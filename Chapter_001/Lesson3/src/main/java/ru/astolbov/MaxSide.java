@@ -22,8 +22,6 @@ public class MaxSide{
 		double side_ac = triangle.a.distanceTo(triangle.c);
 		double side_bc = triangle.b.distanceTo(triangle.c);
 
-		System.out.println("max side " + side_ab);
-
 		double maxside = (side_ac >= side_ab) ? side_ac : side_ab;
 		maxside = (maxside >= side_bc) ? maxside : side_bc;
 
