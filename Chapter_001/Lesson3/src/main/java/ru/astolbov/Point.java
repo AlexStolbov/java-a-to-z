@@ -36,7 +36,8 @@ public class Point{
 	*@return расстояние до заданной точки
 	*/
 	public double distanceTo(Point point) {
-		return Math.sqrt(Math.pow((this.x - point.x), 2.0) + Math.pow((this.y - point.y), 2.0));
+		double dist = Math.sqrt(Math.pow((this.x - point.x), 2.0) + Math.pow((this.y - point.y), 2.0));
+		return dist;
 	}
 }
 	
