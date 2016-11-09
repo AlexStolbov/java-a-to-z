@@ -1,42 +1,56 @@
 package ru.astolbov;
 
-	/**
-	*Class Point
+   /**
+	* Class Point.
 	* точка в декартовой системе координат
-	*@author stolbov
-	*@since 08.11.2016
+	* @author stolbov
+	* @since 08.11.2016
 	*/
 
-import java.lang.Math.*;
+public class Point {
+   /**
+	* Абцисса.
+	*/
+	private double x;
+	/**
+	*Ордината.
+	*/
+	private double y;
 
-public class Point{
-	/**
-	*Абцисса
+   /**
+	* Получить абциссу точки
+	* @return абцисса
 	*/
-	public double x;
-	/**
-	*Ордината
-	*/
-	public double y;
-
-	/**
-	*Создание точки
-	*@param x - абцисса
-	*@param y - ордината
-	*@return точка
-	*/
-	public Point(double x, double y) {
-		this.x = x;
-		this.y = y;
+	public double getX() {
+		return this.x;
 	}
-	
+
 	/**
-	*calculate distance between two points
-	*@param point - точка до которй вычисляется расстояние
-	*@return расстояние до заданной точки
+	* Получить ординату точки.
+	* @return ордината
+	*/
+	public double getY() {
+		return this.y;
+	}
+
+   /**
+	* Создание точки.
+	* @param setx - абцисса
+	* @param sety - ордината
+	*/
+	public Point(double setx, double sety) {
+		this.x = setx;
+		this.y = sety;
+	}
+
+   /**
+	* calculate distance between two points.
+	* @param point - точка до которй вычисляется расстояние
+	* @return расстояние до заданной точки
 	*/
 	public double distanceTo(Point point) {
-		return Math.sqrt(Math.pow((this.x - point.x), 2.0) + Math.pow((this.y - point.y), 2.0));
+		double partone = Math.pow((this.x - point.x), 2.0);
+		double parttwo = Math.pow((this.y - point.y), 2.0);
+		return Math.sqrt(partone + parttwo);
 	}
 }
-	

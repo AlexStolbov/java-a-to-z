@@ -1,47 +1,49 @@
 package ru.astolbov;
 
-import java.lang.Math.*;
-
-	/**
-	*Class Triangle
+   /**
+	* Class Triangl.
 	* Треугольник в декартовой системе координат
-	*@author stolbov
-	*@since 08.11.2016
+	* @author stolbov
+	* @since 08.11.2016
 	*/
 
-public class Triangle{
+public class Triangle {
 	public Point a;
 	public Point b;
 	public Point c;
 
-	public Triangle(Point a, Point b, Point c) {
-		this.a = a;
-		this.b = b;
-		this.c = c;
+	public Triangle(Point seta, Point setb, Point setc) {
+		this.a = seta;
+		this.b = setb;
+		this.c = setc;
 	}
 
-	/**
-	*Проверяет возможность построить треугольник через заданные точки.
-	*Будем считать случай с точками на одной прямой - вырожденным треугольником
-	*, иначе добавить код проверки принадлежности точек прямой в этот-же метод
+   /**
+	* Проверяет возможность построить треугольник через заданные точки.
+	* Будем считать случай с точками на одной
+	* прямой - вырожденным треугольником
+	* , иначе добавить код проверки принадлежности точек
+	* прямой в этот-же метод
+	* @return true - треугольник существует, false - треугольник по
+	* заданным точкам построить невозможно
 	*/
-	public boolean TriangleExist(){
+	public boolean triangleexist() {
 		return !((a.equals(b) || a.equals(c) || b.equals(c)));
 	}
 
-	/**
-	*Calculate the triangle area
-	*@return площадь треугольника
+   /**
+	* Calculate the triangle area.
+	* @return площадь треугольника
 	*/
 	public double calcarea() {
 		double area;
-		if (TriangleExist()){
-			double side_a_b = a.distanceTo(b);
-			double side_a_c = a.distanceTo(c);
-			double side_b_c = b.distanceTo(c);
-			double p = side_a_b + side_a_b + side_b_c;
-			area = Math.sqrt(p*(p - side_a_b)*(p - side_a_c)*(p - side_b_c));
-		}else{			
+		if (triangleexist()) {
+			double sideAB = a.distanceTo(b);
+			double sideAC = a.distanceTo(c);
+			double sideBC = b.distanceTo(c);
+			double p = sideAB + sideAC + sideBC;
+			area = Math.sqrt(p * (p - sideAB) * (p - sideAC) * (p - sideBC));
+		} else {
 			area = 0;
 		}
 

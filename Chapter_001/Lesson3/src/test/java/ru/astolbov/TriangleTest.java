@@ -1,7 +1,7 @@
 package ru.astolbov;
 
 /**
-*Class TriangleTest
+*Class TriangleTest.
 * Тест классов Poin и Triangle
 *@author stolbov
 *@since 08.11.2016
@@ -50,17 +50,17 @@ public class TriangleTest{
 		Triangle triangle = new Triangle(pointFirst, pointFirst, pointSecond);
 		double area = triangle.calcarea();
 		assertThat(area, is(AREA_ZERO));
-		assertThat(triangle.TriangleExist(), is(TRIANGLE_NOT_EXIST));
+		assertThat(triangle.triangleexist(), is(TRIANGLE_NOT_EXIST));
 
 		Triangle triangle2 = new Triangle(pointFirst, pointSecond, pointFirst);
 		double area2 = triangle2.calcarea();
 		assertThat(area2, is(AREA_ZERO));
-		assertThat(triangle2.TriangleExist(), is(TRIANGLE_NOT_EXIST));
+		assertThat(triangle2.triangleexist(), is(TRIANGLE_NOT_EXIST));
 
 		Triangle triangle3 = new Triangle(pointSecond, pointFirst, pointFirst);
 		double area3 = triangle3.calcarea();
 		assertThat(area3, is(AREA_ZERO));
-		assertThat(triangle3.TriangleExist(), is(TRIANGLE_NOT_EXIST));
+		assertThat(triangle3.triangleexist(), is(TRIANGLE_NOT_EXIST));
 	}
 
 	/**
@@ -74,13 +74,13 @@ public class TriangleTest{
 		final boolean TRIANGLE_NOT_EXIST = false;
 		final boolean TRIANGLE_EXIST = true;
 
-		double areaTest = 1157.3347017190663;
+		double areaTest = 2850.389534648609;
 
 		Triangle triangle = new Triangle(pointA, pointB, pointC);
 		double area = triangle.calcarea();
 		assertThat(area, is(areaTest));
-		assertThat(triangle.TriangleExist(), is(!TRIANGLE_NOT_EXIST));
-		assertThat(triangle.TriangleExist(), is(TRIANGLE_EXIST));
+		assertThat(triangle.triangleexist(), is(!TRIANGLE_NOT_EXIST));
+		assertThat(triangle.triangleexist(), is(TRIANGLE_EXIST));
 	}
 
 	/**
