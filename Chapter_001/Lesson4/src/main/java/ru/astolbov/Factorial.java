@@ -11,11 +11,12 @@ import java.math.*;
 
 public class Factorial {
 	public BigInteger calculate(int n) {
-		BigInteger res = BigInteger.valueOf(1);
+		BigInteger res;
 		if (n < 0) {
 			System.out.println("n must be positive");
 			res = BigInteger.valueOf(0);
 		} else {
+			res = BigInteger.valueOf(1);
 			for (int i = 1; i <= n; i++) {
 				res = res.multiply(BigInteger.valueOf(i));
 			}
