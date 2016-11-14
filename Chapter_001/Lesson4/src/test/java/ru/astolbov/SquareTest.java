@@ -17,17 +17,18 @@ public class SquareTest{
 	* Расстояние между двумя точками
 	*/
 	@Test
-	public void WhenCalcSquareThenGetWellResult(){
+	public void whenCalcSquareThenGetWellResult(){
 		final int COEFF_A = 10;
 		final int COEFF_B = 15;
 		final int COEFF_C = 20;
+		final int xFirst = 1;
+		final double yFirst = 45;
+		final int xSecond = 14;
+		final double ySecond = 2190;
 
 		Square square = new Square(COEFF_A, COEFF_B, COEFF_C);
-		int x = 1;
-		double y = 45;
-		assertThat(square.calculate(x), is(y));
-		x = 14;
-		y = 2190;
-		assertThat(square.calculate(x), is(y));
+		
+		assertThat(square.calculate(xFirst), is(yFirst));
+		assertThat(square.calculate(xSecond), is(ySecond));
 	}
 }

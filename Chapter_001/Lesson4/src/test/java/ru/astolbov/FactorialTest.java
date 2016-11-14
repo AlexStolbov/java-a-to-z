@@ -18,13 +18,14 @@ public class FactorialTest{
 	* Факториал
 	*/
 	@Test
-	public void WhenCalcSquareThenGetWellResult(){
+	public void whenCalcSquareThenGetWellResult(){
 		final int TEST_NEGATIVE = -1;
 		final int TEST_ZERO = 0;
 		final int TEST_ONE = 1;
 		final int TEST_TEN = 10;
 
 		Factorial fac = new Factorial();
+		
 		assertThat(fac.calculate(TEST_NEGATIVE), is(BigInteger.valueOf(0)));
 		assertThat(fac.calculate(TEST_ZERO), is(BigInteger.valueOf(1)));
 		assertThat(fac.calculate(TEST_ONE), is(BigInteger.valueOf(1)));
