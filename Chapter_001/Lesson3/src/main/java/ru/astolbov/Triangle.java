@@ -8,14 +8,54 @@ package ru.astolbov;
 	*/
 
 public class Triangle {
-	public Point a;
-	public Point b;
-	public Point c;
+	/**
+	* the "a" top of the triangle.
+	*/
+	private Point a;
+	/**
+	* the "b" top of the triangle.
+	*/
+	private Point b;
+	/**
+	* the "c" top of the triangle.
+	*/
+	private Point c;
+
+	/**
+	* Create class.
+	* @param seta - the "a" top of the triangle
+	* @param setb - the "b" top of the triangle
+	* @param setc - the "c" top of the triangle
+	*/
 
 	public Triangle(Point seta, Point setb, Point setc) {
 		this.a = seta;
 		this.b = setb;
 		this.c = setc;
+	}
+
+	/**
+	* Get "a" top of the triangle.
+	* @return "a" top of the triangle.
+	*/
+	public Point geta() {
+		return this.a;
+	}
+
+	/**
+	* Get "b" top of the triangle.
+	* @return "b" top of the triangle.
+	*/
+	public Point getb() {
+		return this.b;
+	}
+
+	/**
+	* Get "c" top of the triangle.
+	* @return "c" top of the triangle.
+	*/
+	public Point getc() {
+		return this.c;
 	}
 
    /**

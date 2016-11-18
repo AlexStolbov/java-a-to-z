@@ -9,7 +9,16 @@ package ru.astolbov;
 
 public class SquareCalculate {
 
+	/**
+	* Main.
+	* calls class Square
+	* @param args - args
+	*/
+
 	public static void main(String[] args) {
+		/**
+		* coeff a
+		*/
 		final int COEFF_A = 10;
 		final int COEFF_B = 15;
 		final int COEFF_C = 20;

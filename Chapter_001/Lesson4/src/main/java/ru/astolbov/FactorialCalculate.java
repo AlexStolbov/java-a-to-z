@@ -9,7 +9,8 @@ package ru.astolbov;
 
 public class FactorialCalculate {
 	/**
-	* Вычислить факториал от 0 до заданного числа
+	* Вычислить факториал от 0 до заданного числа.
+	* @param args - args
 	*/
 	public static void main(String[] args) {
 		if (args.length == 0) {

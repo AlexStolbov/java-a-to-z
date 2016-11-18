@@ -11,6 +11,7 @@ public class Sort {
 
 	/**
 	* Create array and sort it.
+	* @param args - args
 	*/
 	public static void main(String[] args) {
 		int[] arrayForSort = new int[] {5, 2, 8, 1, 7, 4, 9, 3, 6, 10};
@@ -23,7 +24,8 @@ public class Sort {
 	}
 
 	/**
-	* Type array in cosole
+	* Type array in cosole.
+	* @param arrayForShow - array that show
 	*/
 	public static void showArray(int[] arrayForShow) {
 		for (int element : arrayForShow) {

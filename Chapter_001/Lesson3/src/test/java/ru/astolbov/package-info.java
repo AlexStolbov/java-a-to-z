@@ -1,0 +1,5 @@
+/**
+* TriangleTest.
+*/
+
+package ru.astolbov;

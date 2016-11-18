@@ -1,18 +1,21 @@
 package ru.astolbov;
 
-/**
-	*Class CalculateTest тестирование класса Calculate
-	*@author stolbov
-	*@since 05.11.2016
-*/
-
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
-public class CalculateTest{
+/**
+ *Class CalculateTest тестирование класса Calculate.
+ *@author stolbov
+ *@since 05.11.2016
+*/
+
+public class CalculateTest {
+	/**
+	* Test.
+	*/
 	@Test
-	public void WhenSendStopInEchoThenReturnThreeStops(){
+	public void whenSendStopInEchoThenReturnThreeStops() {
 		Calculate calc = new Calculate();
 		String result = calc.echo("stop");
 		assertThat(result, is("stop stop stop"));

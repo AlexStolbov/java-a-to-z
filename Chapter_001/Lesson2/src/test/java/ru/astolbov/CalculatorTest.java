@@ -1,48 +1,71 @@
 package ru.astolbov;
 
-	/**
-	*Class CalculatorTest для тестирования класса Calculator
-	*@author astolbov
-	*@since 07.11.2016
-	*/
-
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
-public class CalculatorTest{
-	
+/**
+* Class CalculatorTest для тестирования класса Calculator.
+* @author astolbov
+* @since 07.11.2016
+*/
+
+public class CalculatorTest {
+
+	/**
+	* Testing class.
+	*/
 	private Calculator calc = new Calculator();
 
+	/**
+	* Test summ.
+	*/
+
 	@Test
-	public void WhenSendAddThenSumm(){
-		int val1 = 10;
-		int val2 = 2;
+	public void whenSendAddThenSumm() {
+		final int val1 = 10;
+		final int val2 = 2;
+		final double res = 12;
 		calc.add(val1, val2);
-		assertThat(calc.getResult(), is(12.0));
+		assertThat(calc.getResult(), is(res));
 	}
 
+	/**
+	* Test substraction.
+	*/
+
 	@Test
-	public void WhenSendSubtractionThenSubtraction(){
-		int val1 = 10;
-		int val2 = 2;
+	public void whenSendSubtractionThenSubtraction() {
+		final int val1 = 10;
+		final int val2 = 2;
+		final double res = 8.0;
 		calc.subtraction(val1, val2);
-		assertThat(calc.getResult(), is(8.0));
+		assertThat(calc.getResult(), is(res));
 	}
 
+	/**
+	* Test div.
+	*/
+
 	@Test
-	public void WhenSendDivThenDiv(){
-		int val1 = 10;
-		int val2 = 2;
+	public void whenSendDivThenDiv() {
+		final int val1 = 10;
+		final int val2 = 2;
+		final double res = 5.0;
 		calc.div(val1, val2);
-		assertThat(calc.getResult(), is(5.0));
+		assertThat(calc.getResult(), is(res));
 	}
 
+	/**
+	* Test multiplication.
+	*/
+
 	@Test
-	public void WhenSendMultiplicationThenMultiplication(){
-		int val1 = 10;
-		int val2 = 2;
+	public void whenSendMultiplicationThenMultiplication() {
+		final int val1 = 10;
+		final int val2 = 2;
+		final double res = 20.0;
 		calc.multiplication(val1, val2);
-		assertThat(calc.getResult(), is(20.0));
+		assertThat(calc.getResult(), is(res));
 	}
 }

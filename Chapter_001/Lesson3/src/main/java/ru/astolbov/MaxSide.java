@@ -1,11 +1,11 @@
 package ru.astolbov;
 
-   /**
-   * Class MaxSide.
-   * максимальная сторона треугольника
-   * @author stolbov
-   * @since 08.11.2016
-   */
+/**
+* Class MaxSide.
+* максимальная сторона треугольника
+* @author stolbov
+* @since 08.11.2016
+*/
 
 public class MaxSide {
 	/**
@@ -15,9 +15,9 @@ public class MaxSide {
 	*/
 
 	public double max(Triangle triangle) {
-		double sideAB = triangle.a.distanceTo(triangle.b);
-		double sideAC = triangle.a.distanceTo(triangle.c);
-		double sideBC = triangle.b.distanceTo(triangle.c);
+		double sideAB = triangle.geta().distanceTo(triangle.getb());
+		double sideAC = triangle.geta().distanceTo(triangle.getc());
+		double sideBC = triangle.getb().distanceTo(triangle.getc());
 
 		double maxside = sideAB;
 

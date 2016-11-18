@@ -1,6 +1,6 @@
 package ru.astolbov;
 
-import java.math.*;
+import java.math.BigInteger;
 
 /**
 * Class Factorial.
@@ -10,6 +10,13 @@ import java.math.*;
 */
 
 public class Factorial {
+
+	/**
+	* Calculate factorial.
+	* @param n - n factorial
+	* @return n - factorial
+	*/
+
 	public BigInteger calculate(int n) {
 		BigInteger res;
 		if (n < 0) {

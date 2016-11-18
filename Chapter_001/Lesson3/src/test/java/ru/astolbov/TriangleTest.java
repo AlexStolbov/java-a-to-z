@@ -1,5 +1,9 @@
 package ru.astolbov;
 
+import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
 /**
 *Class TriangleTest.
 * Тест классов Poin и Triangle
@@ -7,25 +11,20 @@ package ru.astolbov;
 *@since 08.11.2016
 */
 
-import org.junit.Test;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-import java.lang.Math.*;
-
-public class TriangleTest{
+public class TriangleTest {
 
 	/**
-	* Расстояние между двумя точками
+	* Расстояние между двумя точками.
 	*/
 	@Test
-	public void WhenSendPointThenGetDistance(){
-		double minX = 10.0;
-		double minY = 10.0;
-		
-		double maxX = 16.0;
-		double maxY = 40.0;
+	public void whenSendPointThenGetDistance() {
+		final double minX = 10.0;
+		final double minY = 10.0;
 
-		double distance = Math.sqrt(936);
+		final double maxX = 16.0;
+		final double maxY = 40.0;
+
+		final double distance = Math.sqrt(936);
 
 		Point pointFirst = new Point(minX, minY);
 		Point pointSecond = new Point(maxX, maxY);
@@ -41,7 +40,7 @@ public class TriangleTest{
 	* Площадь "несуществующего" треугольника, у которого вершины совпадают.
 	*/
 	@Test
-	public void WhenCalcAreaNotExistTriangleThenAreaEqualsZero(){
+	public void whenCalcAreaNotExistTriangleThenAreaEqualsZero() {
 		Point pointFirst = new Point(1.0, 1.0);
 		Point pointSecond = new Point(2.0, 2.0);
 		final double AREA_ZERO = 0.0;
@@ -64,17 +63,21 @@ public class TriangleTest{
 	}
 
 	/**
-	* Площадь заданного треугольника
+	* Площадь заданного треугольника.
 	*/
 	@Test
-	public void WhenCalcAreaThenArea(){
-		Point pointA = new Point(10.0, 10.0);
-		Point pointB = new Point(22.0, 10.0);
-		Point pointC = new Point(16.0, 40.0);
+	public void whenCalcAreaThenArea() {
+		final double ten = 10.0;
+		final double twentyTwo = 10.0;
+		final double sixteen = 16.0;
+		final double forty = 40;
+		Point pointA = new Point(ten, ten);
+		Point pointB = new Point(twentyTwo, ten);
+		Point pointC = new Point(sixteen, forty);
 		final boolean TRIANGLE_NOT_EXIST = false;
 		final boolean TRIANGLE_EXIST = true;
 
-		double areaTest = 2850.389534648609;
+		final double areaTest = 1872.0000000000002;
 
 		Triangle triangle = new Triangle(pointA, pointB, pointC);
 		double area = triangle.calcarea();
@@ -84,15 +87,19 @@ public class TriangleTest{
 	}
 
 	/**
-	* Максимальная сторона заданного треугольника
+	* Максимальная сторона заданного треугольника.
 	*/
 	@Test
-	public void WhenMaxSideThenMaxSide(){
-		Point pointA = new Point(10.0, 10.0);
-		Point pointB = new Point(22.0, 10.0);
-		Point pointC = new Point(16.0, 40.0);
+	public void whenMaxSideThenMaxSide() {
+		final double ten = 10.0;
+		final double twentyTwo = 10.0;
+		final double sixteen = 16.0;
+		final double forty = 40;
+		Point pointA = new Point(ten, ten);
+		Point pointB = new Point(twentyTwo, ten);
+		Point pointC = new Point(sixteen, forty);
 
-		double maxsidetriangle = Math.sqrt(936);
+		final double maxsidetriangle = Math.sqrt(936);
 
 		Triangle triangle = new Triangle(pointA, pointB, pointC);
 		MaxSide maxside = new MaxSide();

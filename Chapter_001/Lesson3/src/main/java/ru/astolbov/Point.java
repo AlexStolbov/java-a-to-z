@@ -18,7 +18,7 @@ public class Point {
 	private double y;
 
    /**
-	* Получить абциссу точки
+	* Получить абциссу точки.
 	* @return абцисса
 	*/
 	public double getX() {

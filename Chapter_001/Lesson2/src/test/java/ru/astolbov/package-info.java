@@ -1,0 +1,5 @@
+/**
+*CalculatorTest.
+*/
+
+package ru.astolbov;

@@ -1,5 +1,9 @@
 package ru.astolbov;
 
+import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
 /**
 *Class SquareTest.
 * Тест класса Square
@@ -7,17 +11,13 @@ package ru.astolbov;
 *@since 11.11.2016
 */
 
-import org.junit.Test;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-
-public class SquareTest{
+public class SquareTest {
 
 	/**
-	* Расстояние между двумя точками
+	* Расстояние между двумя точками.
 	*/
 	@Test
-	public void whenCalcSquareThenGetWellResult(){
+	public void whenCalcSquareThenGetWellResult() {
 		final int COEFF_A = 10;
 		final int COEFF_B = 15;
 		final int COEFF_C = 20;
@@ -27,7 +27,7 @@ public class SquareTest{
 		final double ySecond = 2190;
 
 		Square square = new Square(COEFF_A, COEFF_B, COEFF_C);
-		
+
 		assertThat(square.calculate(xFirst), is(yFirst));
 		assertThat(square.calculate(xSecond), is(ySecond));
 	}
