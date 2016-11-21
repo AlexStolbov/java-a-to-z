@@ -1,5 +1,6 @@
 /**
-*BubbleSortTest.
+* BubbleSortTest.
+* ArrayRotationTest.
 */
 
 package ru.astolbov;
