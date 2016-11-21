@@ -1,7 +1,7 @@
 package ru.astolbov;
 
 /**
-* ArrayRotation..
+* ArrayRotation.
 * @author astolbov
 * @since 21.11.2016
 */
