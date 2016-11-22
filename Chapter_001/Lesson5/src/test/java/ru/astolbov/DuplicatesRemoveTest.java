@@ -14,10 +14,10 @@ public class DuplicatesRemoveTest {
 	*/
 	@Test
 	public void whenSendArrayThenRemoveDuplicates() {
-		String[] country = new String[]{"Russia", "USA", "China", "USA", "France", "China", "Russia", "USA", "France"};
+		String[] country = new String[]{"Russia", "Russia", "USA", "China", "USA", "France", "China", "Russia", "USA", "France"};
 		String[] countryTest = new String[]{"Russia", "USA", "China", "France"};
 
-		country = DuplicatesRemove.removeDuplicates(country);
+		country = new DuplicatesRemove().removeDuplicates(country);
 
 		assertThat(country, is(countryTest));
 	}

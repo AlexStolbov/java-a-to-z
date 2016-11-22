@@ -21,14 +21,11 @@ public class ArrayRotationTest {
 		arrayTest[2] = new int[]{2, 1, 0};
 
 		int[][] arrayForRotate = new int[arrayLength][arrayLength];
+		arrayForRotate[0] = new int[]{0, 0, 0};
+		arrayForRotate[1] = new int[]{1, 1, 1};
+		arrayForRotate[2] = new int[]{2, 2, 2};
 
-		for (int i = 0; i <= (arrayForRotate.length - 1); i++) {
-			for (int j = 0; j <= (arrayForRotate[i].length - 1); j++) {
-				arrayForRotate[i][j] = i;
-			}
-		}
-
-		arrayForRotate = ArrayRotation.rotateArray(arrayForRotate);
+		arrayForRotate = new ArrayRotation().rotateArray(arrayForRotate);
 
 		assertThat(arrayForRotate, is(arrayTest));
 	}
