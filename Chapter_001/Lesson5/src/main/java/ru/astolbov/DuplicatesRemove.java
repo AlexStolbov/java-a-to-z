@@ -12,45 +12,47 @@ public class DuplicatesRemove {
 
 	/**
 	* Main.
-	* Creates an array and removes duplicates.
+	* Creates an array and calls the method to remove duplicates
 	* @param args - args
 	*/
 	public static void main(String[] args) {
-		String[] country = new String[]{"Russia", "USA", "China", "USA", "France", "China", "Russia", "USA", "France"};
+		String[] country = new String[]{"France", "France", "Russia", "USA", "China", "USA", "France", "China", "Russia", "USA", "France"};
 
 		showArray(country);
 		System.out.println(country.length);
+
 		country = removeDuplicates(country);
+		
 		showArray(country);
 		System.out.println(country.length);
 	}
 
 	/**
-	* Removes duplicates.
+	* Removes duplicates from array.
 	* @param values - String array
 	* @return values - String array without duplicates.
 	*/
 	public static String[] removeDuplicates(String[] values) {
 
-		String[] withoutDuplicates = new String[values.length];
-
 		boolean copyElement;
-		int lastElement = 0;
-		for (int i = 0; i < values.length; i++) {
+		int lastElement = 1;
+
+		for (int i = 1; i < values.length; i++) {
 			copyElement = true;
 			for (int j = 0; j < lastElement; j++) {
-				if (values[i] == withoutDuplicates[j]) {
+				if (values[i] == values[j]) {
 					copyElement = false;
 				}
 			}
 			if (copyElement) {
-				withoutDuplicates[lastElement] = values[i];
+				values[lastElement] = values[i];
 				lastElement++;
 			}
 		}
 
-		return Arrays.copyOf(withoutDuplicates, lastElement);
+		return Arrays.copyOf(values, lastElement);
 	}
+
 
 	/**
 	* Type array in cosole.
