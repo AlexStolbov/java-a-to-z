@@ -22,7 +22,7 @@ public class DuplicatesRemove {
 		System.out.println(country.length);
 
 		country = removeDuplicates(country);
-		
+
 		showArray(country);
 		System.out.println(country.length);
 	}
