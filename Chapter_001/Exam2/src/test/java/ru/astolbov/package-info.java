@@ -1,0 +1,5 @@
+/**
+* RearrangeTest.
+*/
+
+package ru.astolbov;

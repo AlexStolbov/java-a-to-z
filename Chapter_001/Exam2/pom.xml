@@ -1,0 +1,14 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ru.astolbov</groupId>
+	<artifactId>Exam2</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	
+	<parent>
+		<groupId>ru.astolbov</groupId>
+		<artifactId>Chapter_001</artifactId>
+		<version>1.0</version>
+	</parent>	
+	
+</project>

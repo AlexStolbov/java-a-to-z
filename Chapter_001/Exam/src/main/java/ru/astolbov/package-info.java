@@ -1,0 +1,5 @@
+/**
+* SubStirng.
+*/
+
+package ru.astolbov;
