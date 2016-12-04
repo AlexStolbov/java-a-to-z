@@ -3,7 +3,7 @@
 	<artifactId>Chapter_002</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
-	
+
 	<parent>
 		<groupId>ru.astolbov</groupId>
 		<artifactId>JavaWayFromStudentToMaster</artifactId>
