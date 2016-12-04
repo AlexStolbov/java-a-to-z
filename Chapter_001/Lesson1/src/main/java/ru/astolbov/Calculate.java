@@ -7,23 +7,23 @@ package ru.astolbov;
  */
 
 public class Calculate {
-	/**
-	 * Конструктор, вывод строки в консоль.
-	 * @param args - args
-	 */
+    /**
+     * Конструктор, вывод строки в консоль.
+     * @param args - args
+     */
 
-	public static void main(String[] args) {
-		System.out.println("Hello world!");
-	}
+    public static void main(String[] args) {
+        System.out.println("Hello world!");
+    }
 
-	/**
-	 * Метод для тестирования.
-	 *
-	 * @param value - строка для вывода в консоль
-	 * @return - echo for param
-	 * */
+    /**
+     * Метод для тестирования.
+     *
+     * @param value - строка для вывода в консоль
+     * @return - echo for param
+     * */
 
-	public String echo(String value) {
-		return String.format("%s %s %s", value, value, value);
-	}
+    public String echo(String value) {
+        return String.format("%s %s %s", value, value, value);
+    }
 }
