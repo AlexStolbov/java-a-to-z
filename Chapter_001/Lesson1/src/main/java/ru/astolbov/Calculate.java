@@ -17,10 +17,11 @@ public class Calculate {
 	}
 
 	/**
-	* Метод для тестирования.
-	* @param value - строка для вывода в консоль
-	* @return - echo for param
-	*/
+	 * Метод для тестирования.
+	 *
+	 * @param value - строка для вывода в консоль
+	 * @return - echo for param
+	 * */
 
 	public String echo(String value) {
 		return String.format("%s %s %s", value, value, value);
