@@ -1,16 +1,16 @@
 package ru.astolbov;
 
 /**
-	*Class Calculate решение задачи части 001 урок1.
-	*@author stolbov
-	*@since 05.11.2016
-*/
+ * Class Calculate решение задачи части 001 урок1.
+ * @author stolbov
+ * @since 05.11.2016
+ */
 
 public class Calculate {
 	/**
-	* Конструктор, вывод строки в консоль.
-	* @param args - args
-	*/
+	 * Конструктор, вывод строки в консоль.
+	 * @param args - args
+	 */
 
 	public static void main(String[] args) {
 		System.out.println("Hello world!");
