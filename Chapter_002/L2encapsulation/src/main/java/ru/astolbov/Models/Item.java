@@ -1,6 +1,4 @@
-package ru.astolbov.Start;
-
-import ru.astolbov.Start.Comment;
+package ru.astolbov.Models;
 
 /**
  * Item
@@ -47,8 +45,8 @@ public class Item {
     }
 
     /**
-     * Setter description
-     * @param description
+     * Setter description.
+     * @param description - description
      */
     public void setDescription(String description) {
         this.description = description;
@@ -56,7 +54,7 @@ public class Item {
 
     /**
      * Getter description
-     * @return
+     * @return - description
      */
     public String getDescription() {
         return description;
@@ -64,7 +62,7 @@ public class Item {
 
     /**
      * Add new comment into comments
-     * @param commentText
+     * @param commentText - text of comment
      */
     public void addComment(String commentText) {
         if (lastPositionComment < comments.length) {

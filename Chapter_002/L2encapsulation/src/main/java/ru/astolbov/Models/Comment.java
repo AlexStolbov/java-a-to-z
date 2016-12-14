@@ -1,4 +1,4 @@
-package ru.astolbov.Start;
+package ru.astolbov.Models;
 
 /**
  * Комментарии к задачам
