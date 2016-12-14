@@ -7,6 +7,9 @@ import ru.astolbov.Models.Item;
  * Created by alex on 12/13/16.
  */
 public class Tracker {
-    private Item[] items;
+    /**
+     * Set of items.
+     */
+    private Item[] items = new Item[10];
 
 }

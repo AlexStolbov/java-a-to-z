@@ -5,23 +5,42 @@ package ru.astolbov.Models;
  * Created by alex on 12/13/16.
  */
 public class Item {
+
+    /**
+     * Unique identifier.
+     */
     private String id;
+    /**
+     * The name of the item.
+     */
     private String name;
+    /**
+     * The description of the item.
+     */
     private String description;
+    /**
+     * Array of comment of the items.
+     */
     private Comment[] comments = new Comment[5];
+    /**
+     * Date create.
+     */
     private int createDate;
+    /**
+     * Last comment.
+     */
     private int lastPositionComment = 0;
 
     /**
-     * Setter id
-     * @param setid
+     * Setter id.
+     * @param setid - id for set
      */
-    public void setId(String setid){
+    public void setId(String setid) {
         this.id = setid;
     }
 
     /**
-     * Getter id
+     * Getter id.
      * @return id
      */
     public String getId() {
@@ -29,16 +48,16 @@ public class Item {
     }
 
     /**
-     * Setter name
-     * @param name
+     * Setter name.
+     * @param setname - name for set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String setname) {
+        this.name = setname;
     }
 
     /**
-     * Getter name
-     * @return
+     * Getter name.
+     * @return name
      */
     public String getName() {
         return name;
@@ -46,14 +65,14 @@ public class Item {
 
     /**
      * Setter description.
-     * @param description - description
+     * @param setdescription - description
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String setdescription) {
+        this.description = setdescription;
     }
 
     /**
-     * Getter description
+     * Getter description.
      * @return - description
      */
     public String getDescription() {
@@ -61,7 +80,7 @@ public class Item {
     }
 
     /**
-     * Add new comment into comments
+     * Add new comment into comments.
      * @param commentText - text of comment
      */
     public void addComment(String commentText) {
@@ -73,7 +92,8 @@ public class Item {
     }
 
     /**
-     * Getter comments
+     * Getter comments.
+     * @return - array of comments
      */
     public Comment[] getComments() {
         return comments;
