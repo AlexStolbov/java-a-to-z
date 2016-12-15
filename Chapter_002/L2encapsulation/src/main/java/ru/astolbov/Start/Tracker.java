@@ -40,4 +40,39 @@ public class Tracker {
     private String generateId() {
         return Integer.toString(rN.nextInt(100000));
     }
+
+    /**
+     * Edit item.
+     * set new name and description
+     * @param item - item
+     * @param name - name
+     * @param descr - description
+     */
+    public void editItem(Item item, String name, String descr) {
+        item.setName(name);
+        item.setDescription(descr);
+    }
+
+    /**
+     * Delete item from array this.items.
+     * @param item - the item to be deleted
+     */
+    public void deleteItem(Item item) {
+        for (int i = 0; i < lastItemsPos; i++) {
+            if (items[i].equals(item)) {
+                items[i] = null;
+                if (lastItemsPos == i + 1) {
+                    lastItemsPos--;
+                }
+            }
+        }
+    }
+
+    /**
+     * Getter for items.
+     * @return - this.items
+     */
+    public Item[] getItems() {
+        return items;
+    }
 }
