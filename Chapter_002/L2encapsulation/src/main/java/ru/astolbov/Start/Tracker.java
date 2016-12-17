@@ -60,10 +60,12 @@ public class Tracker {
      */
     public void deleteItem(Item item) {
         for (int i = 0; i < lastItemsPos; i++) {
-            if (items[i].equals(item)) {
-                items[i] = null;
-                if (lastItemsPos == i + 1) {
-                    lastItemsPos--;
+            if (items[i] != null) {
+                if (items[i].equals(item)) {
+                    items[i] = null;
+                    if (lastItemsPos == i + 1) {
+                        lastItemsPos--;
+                    }
                 }
             }
         }
