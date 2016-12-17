@@ -2,6 +2,7 @@ package ru.astolbov.Models;
 
 /**
  * Item
+ * Задача
  * Created by alex on 12/13/16.
  */
 public class Item {

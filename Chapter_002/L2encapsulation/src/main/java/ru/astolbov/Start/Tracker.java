@@ -4,7 +4,8 @@ import ru.astolbov.Models.Item;
 import java.util.Random;
 
 /**
- * Tracker
+ * Tracker.
+ * Выполняет роль базы для задач
  * Created by alex on 12/13/16.
  */
 public class Tracker {
