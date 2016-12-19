@@ -27,10 +27,6 @@ public class Item {
      * Date create.
      */
     private int createDate;
-    /**
-     * Last comment.
-     */
-    private int lastPositionComment = 0;
 
     /**
      * Setter id.
@@ -85,10 +81,11 @@ public class Item {
      * @param commentText - text of comment
      */
     public void addComment(String commentText) {
-        if (lastPositionComment < comments.length) {
-            comments[lastPositionComment] = new Comment();
-            comments[lastPositionComment].setComment(commentText);
-            lastPositionComment++;
+        for (int i = 0; i < comments.length; i++) {
+            if (comments[i] == null) {
+                comments[i] = new Comment();
+                comments[i].setComment(commentText);
+            }
         }
     }
 

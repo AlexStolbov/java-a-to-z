@@ -22,7 +22,7 @@ public class Comment {
      * Getter commentText.
      * @return text of comment
      */
-    public String getComment() {
+    public String getCommentText() {
         return this.commentText;
     }
 }

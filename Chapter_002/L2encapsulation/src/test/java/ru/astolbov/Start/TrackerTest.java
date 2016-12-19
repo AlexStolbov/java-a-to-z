@@ -39,13 +39,31 @@ public class TrackerTest {
     }
 
     /**
+     * Test add null in tracker.
+     */
+    @Test
+    public void whenAddNullThenTrackerNoAddIt() {
+        createTracker();
+        tracker.addItem(null);
+        assertThat(true, is(true));
+    }
+
+    /**
      * Test add item in tracker.
      */
 	@Test
 	public void whenAddItemThenTrackerGetIt() {
 	    createTracker();
-        Item item = addItem();
-		assertThat(tracker.findById(item.getId()) > -1, is(true));
+        Item[] items = new Item[8];
+        for (int i = 0; i < items.length; i++) {
+            items[i] = addItem();
+        }
+
+        boolean findAllItem = true;
+        for (Item currentItem : items) {
+            findAllItem = findAllItem & (tracker.findById(currentItem.getId()) > -1);
+        }
+		assertThat(findAllItem, is(true));
 	}
 
     /**
