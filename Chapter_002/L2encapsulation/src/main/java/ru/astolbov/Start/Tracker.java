@@ -15,59 +15,73 @@ public class Tracker {
     private Item[] items = new Item[10];
 
     /**
-     * Last added position in this.items.
-     */
-    private int lastItemsPos = 0;
-
-    /**
      * Create random items id.
      */
     private final Random rN = new Random();
-
-    /**
-     * Add new item.
-     * @param item - new item.
-     */
-    public void addItem(Item item) {
-        item.setId(generateId());
-        items[lastItemsPos] = item;
-        lastItemsPos++;
-    }
 
     /**
      * Generate new items id.
      * @return new id
      */
     private String generateId() {
-        return Integer.toString(rN.nextInt(100000));
+        return Integer.toString(rN.nextInt(1000));
+    }
+
+    /**
+     * Find item by id.
+     * @param findId - id
+     * @return position of item
+     */
+    public int findById(String findId) {
+        int posItem = -1;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null && items[i].getId() == findId) {
+                posItem = i;
+                break;
+            }
+        }
+        return posItem;
+    }
+
+    /**
+     * Add new item.
+     * @param item - new item.
+     */
+    public void addItem(Item item) {
+        if (item != null && !(item.getId() != null && findById(item.getId()) > -1)) {
+            item.setId(generateId());
+            for (int i = 0; i < items.length; i++) {
+                if (items[i] == null) {
+                    items[i] = item;
+                    break;
+                }
+            }
+        }
     }
 
     /**
      * Edit item.
      * set new name and description
-     * @param item - item
+     * @param editId - id of item to edit
      * @param name - name
      * @param descr - description
      */
-    public void editItem(Item item, String name, String descr) {
-        item.setName(name);
-        item.setDescription(descr);
+    public void editItem(String editId, String name, String descr) {
+        int posItem = findById(editId);
+        if (posItem > -1) {
+            this.items[posItem].setName(name);
+            this.items[posItem].setDescription(descr);
+        }
     }
 
     /**
      * Delete item from array this.items.
-     * @param item - the item to be deleted
+     * @param deleteId - the id of item to be deleted
      */
-    public void deleteItem(Item item) {
-        for (int i = 0; i < lastItemsPos; i++) {
-            if (items[i] != null) {
-                if (items[i].equals(item)) {
-                    items[i] = null;
-                    if (lastItemsPos == i + 1) {
-                        lastItemsPos--;
-                    }
-                }
-            }
+    public void deleteItem(String deleteId) {
+        int posItem = findById(deleteId);
+        if (posItem > -1) {
+            this.items[posItem] = null;
         }
     }
 

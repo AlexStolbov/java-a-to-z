@@ -29,24 +29,47 @@ public class TrackerTest {
     }
 
     /**
+     * Add new item to tracker.
+     * @return added item
+     */
+    private Item addItem() {
+        Item item = new Item();
+        tracker.addItem(item);
+        return item;
+    }
+
+    /**
      * Test add item in tracker.
-     * First add an item to the tracker, then finding it.
      */
 	@Test
 	public void whenAddItemThenTrackerGetIt() {
 	    createTracker();
-        Item item = new Item();
-        tracker.addItem(item);
-        Item[] items = tracker.getItems();
-        boolean findItem = false;
-        for (Item currentItem : items) {
-            if (currentItem.equals(item)) {
-                findItem = true;
-                break;
-            }
-        }
-		assertThat(findItem, is(true));
+        Item item = addItem();
+		assertThat(tracker.findById(item.getId()) > -1, is(true));
 	}
+
+    /**
+     * Test add two items in tracker.
+     */
+    @Test
+    public void whenAddTwoItemsThenTheyHaveDifferentId() {
+        createTracker();
+        Item itemOne = addItem();
+        Item itemTwo = addItem();
+        assertThat(itemOne.getId() == itemTwo.getId(), is(false));
+    }
+
+    /**
+     * Test to add one item in the tracker twice.
+     */
+    @Test
+    public void whenAddExistingItemThenTheyNotChangeId() {
+        createTracker();
+        Item item = addItem();
+        String id = item.getId();
+        tracker.addItem(item);
+        assertThat(id == item.getId(), is(true));
+    }
 
     /**
      * Test edit item in tracker.
@@ -54,15 +77,21 @@ public class TrackerTest {
     @Test
     public void whenEditItemThenItemHaveNewState() {
         createTracker();
-        Item item = new Item();
-        tracker.addItem(item);
+        Item item = addItem();
         String newName = "Get work";
         String newDescription = "time is money";
-        tracker.editItem(item, newName, newDescription);
-        boolean itemIsEdit;
-        itemIsEdit = (item.getName().equals(newName) & item.getDescription().equals(newDescription));
+        tracker.editItem(item.getId(), newName, newDescription);
+        assertThat(item.getName().equals(newName) & item.getDescription().equals(newDescription), is(true));
+    }
 
-        assertThat(itemIsEdit, is(true));
+    /**
+     * Test find by id.
+     */
+    @Test
+    public void whenFindByIdThenGetPosOnArrayOfItems() {
+        createTracker();
+        Item item = addItem();
+        assertThat(tracker.findById(item.getId()) > -1, is(true));
     }
 
     /**
@@ -71,30 +100,19 @@ public class TrackerTest {
     @Test
     public void whenDeleteItemThenTrackerHasNoIt() {
         createTracker();
-        Item item = new Item();
-        tracker.addItem(item);
-        Item[] items = tracker.getItems();
-        tracker.deleteItem(item);
-
-        boolean findItem = false;
-        for (Item currentItem : items) {
-            if (currentItem != null) {
-                if (currentItem.equals(item)) {
-                    findItem = true;
-                    break;
-                }
-            }
-        }
-        assertThat(findItem, is(false));
+        Item item = addItem();
+        String id = item.getId();
+        tracker.deleteItem(id);
+        assertThat(tracker.findById(id) > -1, is(false));
     }
 
     /**
      * Test getter items.
      */
-    public void whenGetItemsThenGetItems() {
+    @Test
+    public void whenGetItemsThenGetNotNullArrayOfItems() {
         createTracker();
-        Item item = new Item();
-        tracker.addItem(item);
+        addItem();
         Item[] items = tracker.getItems();
         assertThat(items != null, is(true));
     }
