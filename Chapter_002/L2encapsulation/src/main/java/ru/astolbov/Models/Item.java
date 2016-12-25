@@ -26,7 +26,16 @@ public class Item {
     /**
      * Date create.
      */
-    private int createDate;
+    private long createDate;
+
+    /**
+     * Line separator.
+     */
+    private String lineseparator = System.getProperty("line.separator");
+
+    public Item() {
+        this.createDate = System.currentTimeMillis();
+    }
 
     /**
      * Setter id.
@@ -95,5 +104,48 @@ public class Item {
      */
     public Comment[] getComments() {
         return comments;
+    }
+
+    /**
+     * The string representation of the Item.
+     */
+    public String toString(){
+        StringBuffer stringBuffer = new StringBuffer();
+
+        stringBuffer.append("Id: ");
+        stringBuffer.append(this.id);
+        stringBuffer.append(". Name: ");
+        stringBuffer.append(this.name);
+        stringBuffer.append(". Create date: ");
+        stringBuffer.append(this.createDate);
+        if (this.description != null) {
+            stringBuffer.append(". Description: ");
+            stringBuffer.append(this.description);
+        }
+
+        for (Comment comment:getComments()) {
+            if (comment != null) {
+                stringBuffer.append(lineseparator);
+                stringBuffer.append("   comments: ");
+                stringBuffer.append(comment.getCommentText());
+            }
+        }
+
+        return stringBuffer.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        return id.equals(item.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

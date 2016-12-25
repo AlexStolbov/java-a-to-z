@@ -1,6 +1,7 @@
 package ru.astolbov.Start;
 
 import org.junit.Test;
+import ru.astolbov.Start.Input.StubInputMenu;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -15,7 +16,9 @@ public class StartUITest {
      */
     @Test
     public void whenAddItemThenTrackerGetIt() {
-        StartUI start = new StartUI();
+        StubInputMenu stubInputMenu = new StubInputMenu();
+        StartUI startui = new StartUI(stubInputMenu);
+
         assertThat(true, is(true));
     }
 }

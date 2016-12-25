@@ -10,14 +10,27 @@ import java.util.Random;
  */
 public class Tracker {
     /**
+     * Max items in tracker.
+     */
+    private int maxItems = 10;
+
+    /**
      * Array of items.
      */
-    private Item[] items = new Item[10];
+    private Item[] items = new Item[this.maxItems];
 
     /**
      * Create random items id.
      */
     private final Random rN = new Random();
+
+    /**
+     * Returm max items in tracker.
+     * @return - int
+     */
+    public int getMaxItems() {
+        return maxItems;
+    }
 
     /**
      * Generate new items id.
@@ -90,7 +103,7 @@ public class Tracker {
      * @return - this.items
      */
     public Item[] getItems() {
-        return items;
+        return this.items;
     }
 
 }
