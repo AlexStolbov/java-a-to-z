@@ -21,7 +21,7 @@ public class StartUI {
     /**
      * Line separator.
      */
-    public static String lineseparator = System.getProperty("line.separator");
+    public static final String LINESEPARATOR = System.getProperty("line.separator");
 
     /**
      * Tracker.
@@ -78,9 +78,9 @@ public class StartUI {
         do {
             MenuItem selectedMenu = this.showMenuRequestItem();
             if (selectedMenu != null) {
-                exit = selectedMenu.goExit();
                 ArrayList<String> commandResult = selectedMenu.doCommandMenu(tracker, input);
                 consoleOut.toConsole(commandResult);
+                exit = selectedMenu.goExit();
             } else {
                 exit = false;
             }
@@ -95,7 +95,7 @@ public class StartUI {
     private MenuItem showMenuRequestItem() {
         System.out.println("======== Main menu ===========");
         for (int i = 0; i < this.menu.length; i++) {
-            System.out.printf("%s. %s %s", Integer.toString(i + 1), this.menu[i].getMenuName(), lineseparator);
+            System.out.printf("%s. %s %s", Integer.toString(i + 1), this.menu[i].getMenuName(), LINESEPARATOR);
         }
         String numberMenuItem = input.ask("Please, enter number menu item: ");
         MenuItem selectedMenu;

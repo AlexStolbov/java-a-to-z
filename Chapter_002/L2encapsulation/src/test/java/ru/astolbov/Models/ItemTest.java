@@ -35,18 +35,34 @@ public class ItemTest {
      * Test set and get items name.
      */
     @Test
-    public void whenAddCommenteThenGetComment() {
+    public void whenAddCommentThenGetComment() {
         Item item = new Item();
-        String commentText = "this is first comment";
+        String commentText = "one comment";
         item.addComment(commentText);
+        item.addComment("two comment");
+        item.addComment("three comment");
+        item.addComment("four comment");
+        item.addComment("five comment");
+        item.addComment("six comment");
         Comment[] comments = item.getComments();
         boolean findCommentText = false;
-        for (Comment currenrComment: comments) {
-            if (currenrComment.getCommentText().equals(commentText)) {
+        for (Comment currentComment: comments) {
+            if (currentComment.getCommentText().equals(commentText)) {
                 findCommentText = true;
                 break;
             }
         }
         assertThat(findCommentText, is(true));
+    }
+
+    @Test
+    public void whenToStringThenReturnAllFields() {
+        Item item = new Item();
+        item.setName("one task");
+        item.addComment("one comment");
+        String toString = item.toString();
+        String well = "Id: null. Name: one task. Create date: ".concat(item.get)
+        1482776535361 comments: one comment";
+        assertThat(toString, is(well));
     }
 }

@@ -28,15 +28,15 @@ public class MenuItemList implements MenuItem {
      */
     public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
         ArrayList<String> list = new ArrayList<>();
-        list.add("------- List of items -----------".concat(StartUI.lineseparator));
+        list.add("------- List of items -----------".concat(StartUI.LINESEPARATOR));
 
         for (Item item:tracker.getItems()) {
             if (item != null) {
-                list.add(item.toString().concat(StartUI.lineseparator));
+                list.add(item.toString().concat(StartUI.LINESEPARATOR));
             }
         }
-        if (list.size() == 0) {
-            list.add("In the tracker there are no items ".concat(StartUI.lineseparator));
+        if (list.size() == 1) {
+            list.add("In the tracker there are no items ".concat(StartUI.LINESEPARATOR));
         }
 
         return list;

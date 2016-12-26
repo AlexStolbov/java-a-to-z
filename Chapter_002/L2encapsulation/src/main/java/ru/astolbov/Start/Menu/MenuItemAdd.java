@@ -2,6 +2,7 @@ package ru.astolbov.Start.Menu;
 
 import ru.astolbov.Models.Item;
 import ru.astolbov.Start.Input.Input;
+import ru.astolbov.Start.StartUI;
 import ru.astolbov.Start.Tracker;
 
 import java.util.ArrayList;
@@ -27,13 +28,16 @@ public class MenuItemAdd implements MenuItem {
      */
     public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
         String name = input.ask("Please, enter the task's name ");
+        String description = input.ask("Please, enter the task's name ");
 
         Item item = new Item();
         item.setName(name);
+        item.setDescription(description);
         tracker.addItem(item);
 
         ArrayList<String> list = new ArrayList<>();
-        list.add("The task is added to the tracker");
+        list.add("The task is added to the tracker: ".concat(StartUI.LINESEPARATOR));
+        list.add(item.toString().concat(StartUI.LINESEPARATOR));
         return list;
     }
 

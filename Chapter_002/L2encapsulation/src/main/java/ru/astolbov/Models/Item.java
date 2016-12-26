@@ -92,6 +92,10 @@ public class Item {
         return description;
     }
 
+    public Item(long createDate) {
+        this.createDate = createDate;
+    }
+
     /**
      * Add new comment into comments.
      * @param commentText - text of comment
@@ -101,6 +105,7 @@ public class Item {
             if (comments[i] == null) {
                 comments[i] = new Comment();
                 comments[i].setComment(commentText);
+                break;
             }
         }
     }
