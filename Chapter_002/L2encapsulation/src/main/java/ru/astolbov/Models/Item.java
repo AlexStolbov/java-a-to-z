@@ -11,18 +11,22 @@ public class Item {
      * Unique identifier.
      */
     private String id;
+
     /**
      * The name of the item.
      */
     private String name;
+
     /**
      * The description of the item.
      */
     private String description;
+
     /**
      * Array of comment of the items.
      */
     private Comment[] comments = new Comment[5];
+
     /**
      * Date create.
      */
@@ -33,6 +37,9 @@ public class Item {
      */
     private String lineseparator = System.getProperty("line.separator");
 
+    /**
+     * Constructor.
+     */
     public Item() {
         this.createDate = System.currentTimeMillis();
     }
@@ -108,8 +115,9 @@ public class Item {
 
     /**
      * The string representation of the Item.
+     * @return the string representation of the menu
      */
-    public String toString(){
+    public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
 
         stringBuffer.append("Id: ");
@@ -136,8 +144,12 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Item item = (Item) o;
 

@@ -1,6 +1,7 @@
 package ru.astolbov.Start;
 
 import ru.astolbov.Start.Input.ConsoleInput;
+import ru.astolbov.Start.Input.ConsoleOutput;
 import ru.astolbov.Start.Input.Input;
 import ru.astolbov.Start.Menu.MenuItem;
 import ru.astolbov.Start.Menu.MenuItemAdd;
@@ -11,6 +12,8 @@ import ru.astolbov.Start.Menu.MenuItemFilteredList;
 import ru.astolbov.Start.Menu.MenuItemAddComment;
 import ru.astolbov.Start.Menu.MenuItemExit;
 
+import java.util.ArrayList;
+
 /**
  * Created by alex on 12/13/16.
  */
@@ -18,17 +21,32 @@ public class StartUI {
     /**
      * Line separator.
      */
-    private String lineseparator = System.getProperty("line.separator");
+    public static String lineseparator = System.getProperty("line.separator");
+
     /**
-     * Tracker
+     * Tracker.
      */
     private Tracker tracker;
-    /*
 
+    /**
+     Input source.
      */
     private Input input;
+
+    /**
+     * Print string array on console.
+     */
+    private ConsoleOutput consoleOut;
+
+    /**
+     * Menu in console.
+     */
     private MenuItem[] menu;
 
+    /**
+     * Constructor.
+     * @param inputSet - console or array
+     */
     public StartUI(Input inputSet) {
         this.menu = new MenuItem[7];
         this.menu[0] = new MenuItemAdd();
@@ -45,32 +63,36 @@ public class StartUI {
             this.input = inputSet;
         }
 
+        consoleOut = new ConsoleOutput();
+
         this.tracker = new Tracker();
+
     }
 
+    /**
+     * Start program.
+     * @return - 0
+     */
     public int begin() {
         boolean exit;
-        MenuItem selectedMenu;
         do {
-            selectedMenu = this.showMenu();
+            MenuItem selectedMenu = this.showMenuRequestItem();
             if (selectedMenu != null) {
                 exit = selectedMenu.goExit();
-                if (!exit) {
-                    System.out.println("");
-                    selectedMenu.doCommandMenu(tracker, input);
-                    System.out.println("");
-                }
+                ArrayList<String> commandResult = selectedMenu.doCommandMenu(tracker, input);
+                consoleOut.toConsole(commandResult);
             } else {
                 exit = false;
             }
         } while (!exit);
-        System.out.println("---------------------------");
-        System.out.println("-------- Goodbye! ---------");
-        System.out.println("---------------------------");
         return 0;
     }
 
-    private MenuItem showMenu () {
+    /**
+     * Показать меню и запросить пункт.
+     * @return - selected menu.
+     */
+    private MenuItem showMenuRequestItem() {
         System.out.println("======== Main menu ===========");
         for (int i = 0; i < this.menu.length; i++) {
             System.out.printf("%s. %s %s", Integer.toString(i + 1), this.menu[i].getMenuName(), lineseparator);
@@ -87,9 +109,8 @@ public class StartUI {
 
     /**
      * Getter menu.
-     * @return
+     * @return array of menu items
      */
-
     public MenuItem[] getMenu() {
         return menu;
     }

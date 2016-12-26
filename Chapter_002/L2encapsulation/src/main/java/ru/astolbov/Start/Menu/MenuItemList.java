@@ -2,17 +2,15 @@ package ru.astolbov.Start.Menu;
 
 import ru.astolbov.Models.Item;
 import ru.astolbov.Start.Input.Input;
+import ru.astolbov.Start.StartUI;
 import ru.astolbov.Start.Tracker;
+
+import java.util.ArrayList;
 
 /**
  * Created by alex on 12/21/16.
  */
 public class MenuItemList implements MenuItem {
-
-    /**
-     * Line separator.
-     */
-    private final String lineseparator = System.getProperty("line.separator");
 
     /**
      * Define name of menu.
@@ -26,18 +24,29 @@ public class MenuItemList implements MenuItem {
      * Actions that are performed when you select this menu.
      * @param tracker - tracker
      * @param input - input
+     * @return strings - array to show
      */
-    public void doCommandMenu(Tracker tracker, Input input) {
-        int showItems = 0;
-        System.out.printf("%s %s", "------- List of items -----------", lineseparator);
+    public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("------- List of items -----------".concat(StartUI.lineseparator));
+
         for (Item item:tracker.getItems()) {
             if (item != null) {
-                System.out.printf("%s %s", item.toString(), lineseparator);
-                showItems++;
+                list.add(item.toString().concat(StartUI.lineseparator));
             }
         }
-        if (showItems == 0) {
-            System.out.printf("%s %s", "In the tracker there are no items ", lineseparator);
+        if (list.size() == 0) {
+            list.add("In the tracker there are no items ".concat(StartUI.lineseparator));
         }
+
+        return list;
+    }
+
+    /**
+     * Return the flag of the output from the menu.
+     * @return -  false
+     */
+    public boolean goExit() {
+        return false;
     }
 }

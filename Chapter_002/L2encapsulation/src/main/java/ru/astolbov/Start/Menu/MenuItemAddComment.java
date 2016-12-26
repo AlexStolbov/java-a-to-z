@@ -4,6 +4,8 @@ import ru.astolbov.Models.Item;
 import ru.astolbov.Start.Input.Input;
 import ru.astolbov.Start.Tracker;
 
+import java.util.ArrayList;
+
 /**
  * Created by alex on 12/21/16.
  */
@@ -20,9 +22,22 @@ public class MenuItemAddComment implements MenuItem {
      * Actions that are performed when you select this menu.
      * @param tracker - tracker
      * @param input - input
+     * @return strings - array to show
      */
-    public void doCommandMenu(Tracker tracker, Input input) {
+    public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
 
         Item item = new Item();
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Add comment");
+        return list;
+    }
+
+    /**
+     * Return the flag of the output from the menu.
+     * @return -  false
+     */
+    public boolean goExit() {
+        return false;
     }
 }
