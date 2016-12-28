@@ -1,5 +1,8 @@
 package ru.astolbov.Models;
 
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+
 /**
  * Item
  * Задача
@@ -35,7 +38,7 @@ public class Item {
     /**
      * Line separator.
      */
-    private String lineseparator = System.getProperty("line.separator");
+    private static final String LINESEPARATOR = System.getProperty("line.separator");
 
     /**
      * Constructor.
@@ -92,8 +95,24 @@ public class Item {
         return description;
     }
 
-    public Item(long createDate) {
-        this.createDate = createDate;
+    /**
+     * Getter createDate.
+     * @return - createDate
+     */
+    public long getCreateDate() {
+        return createDate;
+    }
+
+    /**
+     * Return createDate as string.
+     * @return date in human format
+     */
+    public String createDateAsString() {
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTimeInMillis(this.createDate);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
+
+        return sdf.format(gregorianCalendar.getTime());
     }
 
     /**
@@ -124,26 +143,19 @@ public class Item {
      */
     public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
-
-        stringBuffer.append("Id: ");
-        stringBuffer.append(this.id);
-        stringBuffer.append(". Name: ");
-        stringBuffer.append(this.name);
-        stringBuffer.append(". Create date: ");
-        stringBuffer.append(this.createDate);
+        stringBuffer.append("Id: ".concat(this.id).concat(". "));
+        stringBuffer.append("Name: ".concat(this.name).concat(". "));
+        stringBuffer.append("Create date: ".concat(createDateAsString()).concat(". "));
         if (this.description != null) {
-            stringBuffer.append(". Description: ");
-            stringBuffer.append(this.description);
+            stringBuffer.append("Description: ".concat(this.description).concat(". "));
         }
-
         for (Comment comment:getComments()) {
             if (comment != null) {
-                stringBuffer.append(lineseparator);
-                stringBuffer.append("   comments: ");
+                stringBuffer.append(LINESEPARATOR);
+                stringBuffer.append(" comments: ");
                 stringBuffer.append(comment.getCommentText());
             }
         }
-
         return stringBuffer.toString();
     }
 

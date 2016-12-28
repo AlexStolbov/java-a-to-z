@@ -9,6 +9,7 @@ import static org.junit.Assert.assertThat;
  * Created by alex on 12/19/16.
  */
 public class ItemTest {
+
     /**
      * Test set and get items id.
      */
@@ -55,14 +56,70 @@ public class ItemTest {
         assertThat(findCommentText, is(true));
     }
 
+    /**
+     * The General part tests convert item to string.
+     * @param item - test item
+     * @param itemData - data for item
+     * @return the string representation of the menu
+     */
+    private String itemToString(Item item, String[] itemData) {
+        String lineseparator = System.getProperty("line.separator");
+
+        item.setId(itemData[0]);
+        item.setName(itemData[1]);
+        item.addComment(itemData[3]);
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("Id: ".concat(itemData[0]).concat(". "));
+        stringBuffer.append("Name: ".concat(itemData[1]).concat(". "));
+        stringBuffer.append("Create date: ");
+        stringBuffer.append(item.createDateAsString().concat(". "));
+        if (itemData[2] != null) {
+            item.setDescription(itemData[2]);
+            stringBuffer.append("Description: ".concat(itemData[2]).concat(". "));
+        }
+        stringBuffer.append(lineseparator.concat(" comments: ").concat(itemData[3]));
+
+        return stringBuffer.toString();
+    }
+
+    /**
+     * Test convert item to string.
+     */
     @Test
-    public void whenToStringThenReturnAllFields() {
+    public void whenToStringThenReturnMainFields() {
+
         Item item = new Item();
-        item.setName("one task");
-        item.addComment("one comment");
+
+        String[] itemData = new String[4];
+        itemData[0] = "1";
+        itemData[1] = "one task";
+        itemData[2] = null;
+        itemData[3] = "one comment";
+
+        String well = itemToString(item, itemData);
         String toString = item.toString();
-        String well = "Id: null. Name: one task. Create date: ".concat(item.get)
-        1482776535361 comments: one comment";
+
+        assertThat(toString, is(well));
+    }
+
+    /**
+     * Test convert item to string with description.
+     */
+    @Test
+    public void whenToStringThenReturnMainFieldsWithDescr() {
+
+        Item item = new Item();
+
+        String[] itemData = new String[4];
+        itemData[0] = "1";
+        itemData[1] = "one task";
+        itemData[2] = "test task";
+        itemData[3] = "one comment";
+
+        String well = itemToString(item, itemData);
+        String toString = item.toString();
+
         assertThat(toString, is(well));
     }
 }
