@@ -2,7 +2,6 @@ package ru.astolbov.Start.Menu;
 
 import ru.astolbov.Models.Item;
 import ru.astolbov.Start.Input.Input;
-import ru.astolbov.Start.StartUI;
 import ru.astolbov.Start.Tracker;
 
 import java.util.ArrayList;
@@ -27,16 +26,17 @@ public class MenuItemList implements MenuItem {
      * @return strings - array to show
      */
     public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
+
         ArrayList<String> list = new ArrayList<>();
-        list.add("------- List of items -----------".concat(StartUI.LINESEPARATOR));
+        list.add("------- List of items -----------".concat(System.lineSeparator()));
 
         for (Item item:tracker.getItems()) {
             if (item != null) {
-                list.add(item.toString().concat(StartUI.LINESEPARATOR));
+                list.add(item.toString().concat(System.lineSeparator()));
             }
         }
         if (list.size() == 1) {
-            list.add("In the tracker there are no items ".concat(StartUI.LINESEPARATOR));
+            list.add("In the tracker there are no items ".concat(System.lineSeparator()));
         }
 
         return list;

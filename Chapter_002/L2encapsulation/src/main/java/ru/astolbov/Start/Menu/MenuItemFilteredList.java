@@ -1,5 +1,6 @@
 package ru.astolbov.Start.Menu;
 
+import ru.astolbov.Models.Item;
 import ru.astolbov.Start.Input.Input;
 import ru.astolbov.Start.Tracker;
 
@@ -25,8 +26,21 @@ public class MenuItemFilteredList implements MenuItem {
      */
     public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
 
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Filtered list");
+       ArrayList<String> list = new ArrayList<>();
+
+        String filter = input.ask("Please, enter filter ");
+
+        list.add("------- Filtered list of items -----------".concat(System.lineSeparator()));
+
+        for (Item item:tracker.getItems()) {
+            if (item != null && item.getName().contains(filter)) {
+                list.add(item.toString().concat(System.lineSeparator()));
+            }
+        }
+        if (list.size() == 1) {
+            list.add("No found items ".concat(System.lineSeparator()));
+        }
+
         return list;
     }
 

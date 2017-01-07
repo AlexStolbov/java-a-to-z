@@ -18,10 +18,6 @@ import java.util.ArrayList;
  * Created by alex on 12/13/16.
  */
 public class StartUI {
-    /**
-     * Line separator.
-     */
-    public static final String LINESEPARATOR = System.getProperty("line.separator");
 
     /**
      * Tracker.
@@ -95,7 +91,7 @@ public class StartUI {
     private MenuItem showMenuRequestItem() {
         System.out.println("======== Main menu ===========");
         for (int i = 0; i < this.menu.length; i++) {
-            System.out.printf("%s. %s %s", Integer.toString(i + 1), this.menu[i].getMenuName(), LINESEPARATOR);
+            System.out.printf("%s. %s %s", Integer.toString(i + 1), this.menu[i].getMenuName(), System.lineSeparator());
         }
         String numberMenuItem = input.ask("Please, enter number menu item: ");
         MenuItem selectedMenu;
@@ -113,6 +109,30 @@ public class StartUI {
      */
     public MenuItem[] getMenu() {
         return menu;
+    }
+
+    /**
+     * Getter input.
+     * @return input
+     */
+    public Input getInput() {
+        return input;
+    }
+
+    /**
+     * Getter tracker.
+     * @return tracker
+     */
+    public Tracker getTracker() {
+        return tracker;
+    }
+
+    /**
+     * Setter input.
+     * @param inputSet - input
+     */
+    public void setInput(Input inputSet) {
+        this.input = inputSet;
     }
 
     /**

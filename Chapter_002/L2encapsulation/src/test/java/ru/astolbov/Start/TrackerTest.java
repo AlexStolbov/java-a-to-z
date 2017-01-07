@@ -74,7 +74,7 @@ public class TrackerTest {
         createTracker();
         Item itemOne = addItem();
         Item itemTwo = addItem();
-        assertThat(itemOne.getId() == itemTwo.getId(), is(false));
+        assertThat(itemOne.getId().equals(itemTwo.getId()), is(false));
     }
 
     /**

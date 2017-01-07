@@ -27,7 +27,15 @@ public class MenuItemDelete implements MenuItem {
     public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
 
         ArrayList<String> list = new ArrayList<>();
-        list.add("Delete item");
+        String itemsID = input.ask("Please, enter items ID ");
+        int posItem = tracker.findById(itemsID);
+        if (posItem > -1) {
+            tracker.deleteItem(itemsID);
+            list.add("items deleted");
+        } else {
+            list.add("Item not found");
+        }
+
         return list;
     }
 

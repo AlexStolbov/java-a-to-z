@@ -1,7 +1,5 @@
 package ru.astolbov.Start.Input;
 
-import ru.astolbov.Start.StartUI;
-
 import java.util.ArrayList;
 
 /**
@@ -14,13 +12,13 @@ public class ConsoleOutput {
      */
     public void toConsole(ArrayList<String> strings) {
         if (strings.size() > 0) {
-            System.out.printf("%s", StartUI.LINESEPARATOR);
+            System.out.printf("%s", System.lineSeparator());
             for (String strLine: strings) {
                 if (strLine != null) {
                     System.out.print(strLine);
                 }
             }
-            System.out.printf("%s", StartUI.LINESEPARATOR);
+            System.out.printf("%s", System.lineSeparator());
         }
     }
 }

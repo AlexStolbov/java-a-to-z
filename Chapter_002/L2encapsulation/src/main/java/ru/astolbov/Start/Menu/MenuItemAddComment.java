@@ -19,17 +19,24 @@ public class MenuItemAddComment implements MenuItem {
     }
 
     /**
-     * Actions that are performed when you select this menu.
+     * Add comment to item.
      * @param tracker - tracker
      * @param input - input
      * @return strings - array to show
      */
     public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
-
-        Item item = new Item();
-
         ArrayList<String> list = new ArrayList<>();
-        list.add("Add comment");
+        String itemsID = input.ask("Please, enter items ID ");
+        int posItem = tracker.findById(itemsID);
+        if (posItem > -1) {
+            Item item = tracker.getItems()[posItem];
+            String comment = input.ask("Please, enter comment ");
+            item.addComment(comment);
+            list.add("comment is added");
+        } else {
+            list.add("Item not found");
+        }
+
         return list;
     }
 

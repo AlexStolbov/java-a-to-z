@@ -36,11 +36,6 @@ public class Item {
     private long createDate;
 
     /**
-     * Line separator.
-     */
-    private static final String LINESEPARATOR = System.getProperty("line.separator");
-
-    /**
      * Constructor.
      */
     public Item() {
@@ -151,7 +146,7 @@ public class Item {
         }
         for (Comment comment:getComments()) {
             if (comment != null) {
-                stringBuffer.append(LINESEPARATOR);
+                stringBuffer.append(System.lineSeparator());
                 stringBuffer.append(" comments: ");
                 stringBuffer.append(comment.getCommentText());
             }

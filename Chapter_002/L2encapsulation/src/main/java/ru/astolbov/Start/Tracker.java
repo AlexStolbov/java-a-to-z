@@ -48,7 +48,7 @@ public class Tracker {
     public int findById(String findId) {
         int posItem = -1;
         for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId() == findId) {
+            if (items[i] != null && items[i].getId().equals(findId)) {
                 posItem = i;
                 break;
             }

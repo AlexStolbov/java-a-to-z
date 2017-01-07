@@ -1,15 +1,13 @@
 package ru.astolbov.Start.Input;
 
-import ru.astolbov.Start.StartUI;
-
 /**
  * Created by alex on 12/21/16.
  */
-public class StubInputMenu implements Input {
+public class StubInput implements Input {
     /**
      * Array of answers.
      */
-    private final String[] answers = new String[10];
+    private String[] answers;
     /**
      * Number of last answer.
      */
@@ -17,11 +15,10 @@ public class StubInputMenu implements Input {
 
     /**
      * Constructor.
+     * @param answersSet - set of answers
      */
-    public StubInputMenu() {
-        for (int i = 0; i < new StartUI(null).getMenu().length; i++) {
-            this.answers[i] = Integer.toString(i + 1);
-        }
+    public StubInput(String[] answersSet) {
+        this.answers = answersSet;
         this.lastAnswer = 0;
     }
 
@@ -31,12 +28,12 @@ public class StubInputMenu implements Input {
      * @return String of answer
      */
     public String ask(String question) {
-        int nuberFoReturn = this.lastAnswer;
+        int numberForReturn = this.lastAnswer;
         if (this.lastAnswer < this.answers.length - 1) {
             this.lastAnswer++;
         } else {
             lastAnswer = 0;
         }
-        return this.answers[nuberFoReturn];
+        return this.answers[numberForReturn];
     }
 }

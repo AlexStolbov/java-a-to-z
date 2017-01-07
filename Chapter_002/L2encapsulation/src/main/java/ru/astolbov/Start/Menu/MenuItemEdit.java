@@ -1,5 +1,6 @@
 package ru.astolbov.Start.Menu;
 
+import ru.astolbov.Models.Item;
 import ru.astolbov.Start.Input.Input;
 import ru.astolbov.Start.Tracker;
 
@@ -26,7 +27,17 @@ public class MenuItemEdit implements MenuItem {
     public ArrayList<String> doCommandMenu(Tracker tracker, Input input) {
 
         ArrayList<String> list = new ArrayList<>();
-        list.add("Edit item");
+        String itemsID = input.ask("Please, enter items ID ");
+        int posItem = tracker.findById(itemsID);
+        if (posItem > -1) {
+            Item item = tracker.getItems()[posItem];
+            String newName = input.ask("Please, new name ");
+            item.setName(newName);
+            list.add("Item is edited");
+        } else {
+            list.add("Item not found");
+        }
+
         return list;
     }
 
