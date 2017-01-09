@@ -1,6 +1,7 @@
 package ru.astolbov.Start.Menu;
 
 import ru.astolbov.Models.Item;
+import ru.astolbov.Start.Input.ConsoleOutput;
 import ru.astolbov.Start.Input.StubInput;
 import ru.astolbov.Start.Tracker;
 
@@ -28,8 +29,9 @@ public class MenuItemEditTest {
         answers[0] = tracker.getItems()[0].getId();
         answers[1] = "new name";
 
-        MenuItemEdit menuItemEdit = new MenuItemEdit();
-        ArrayList<String> result = menuItemEdit.doCommandMenu(tracker, new StubInput(answers));
+        MenuTracker menuTracker = new MenuTracker(tracker, new StubInput(answers), new ConsoleOutput());
+        MenuTracker.MenuItemEdit menuItemEdit = menuTracker.new MenuItemEdit();
+        ArrayList<String> result = menuItemEdit.doCommandMenu();
 
         assertThat(result.get(0), is("Item is edited"));
     }
@@ -45,8 +47,9 @@ public class MenuItemEditTest {
         answers[0] = "-1";
         answers[1] = "new name";
 
-        MenuItemEdit menuItemEdit = new MenuItemEdit();
-        ArrayList<String> result = menuItemEdit.doCommandMenu(tracker, new StubInput(answers));
+        MenuTracker menuTracker = new MenuTracker(tracker, new StubInput(answers), new ConsoleOutput());
+        MenuTracker.MenuItemEdit menuItemEdit = menuTracker.new MenuItemEdit();
+        ArrayList<String> result = menuItemEdit.doCommandMenu();
 
         assertThat(result.get(0), is("Item not found"));
     }

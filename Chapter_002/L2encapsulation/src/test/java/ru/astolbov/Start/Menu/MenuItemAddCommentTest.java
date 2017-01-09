@@ -1,6 +1,7 @@
 package ru.astolbov.Start.Menu;
 
 import ru.astolbov.Models.Item;
+import ru.astolbov.Start.Input.ConsoleOutput;
 import ru.astolbov.Start.Input.StubInput;
 import ru.astolbov.Start.Tracker;
 
@@ -27,8 +28,10 @@ public class MenuItemAddCommentTest {
         answers[0] = tracker.getItems()[0].getId();
         answers[1] = "text comment";
 
-        MenuItemAddComment menuAddComment = new MenuItemAddComment();
-        ArrayList<String> result = menuAddComment.doCommandMenu(tracker, new StubInput(answers));
+        MenuTracker menuTracker = new MenuTracker(tracker, new StubInput(answers), new ConsoleOutput());
+        MenuTracker.MenuItemAddComment menuAddComment = menuTracker.new MenuItemAddComment();
+
+        ArrayList<String> result = menuAddComment.doCommandMenu();
 
         assertThat(result.get(0), is("comment is added"));
     }
@@ -45,8 +48,9 @@ public class MenuItemAddCommentTest {
         answers[0] = "-1";
         answers[1] = "text comment";
 
-        MenuItemAddComment menuAddComment = new MenuItemAddComment();
-        ArrayList<String> result = menuAddComment.doCommandMenu(tracker, new StubInput(answers));
+        MenuTracker menuTracker = new MenuTracker(tracker, new StubInput(answers), new ConsoleOutput());
+        MenuTracker.MenuItemAddComment menuAddComment = menuTracker.new MenuItemAddComment();
+        ArrayList<String> result = menuAddComment.doCommandMenu();
 
         assertThat(result.get(0), is("Item not found"));
     }

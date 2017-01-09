@@ -1,6 +1,8 @@
 package ru.astolbov.Start.Menu;
 
 import org.junit.Test;
+import ru.astolbov.Start.Input.ConsoleOutput;
+import ru.astolbov.Start.Input.StubInput;
 import ru.astolbov.Start.Tracker;
 
 import static org.hamcrest.core.Is.is;
@@ -16,8 +18,13 @@ public class MenuItemAddTest {
      */
     @Test
     public void whenGetMenuNameThenGetIt() {
-        MenuItemAdd menuAdd = new MenuItemAdd();
-        Tracker tracker = new Tracker();
+
+        String[] answers = new String[2];
+        answers[0] = "item name";
+        answers[1] = "descr";
+
+        MenuTracker menuTracker = new MenuTracker(new Tracker(), new StubInput(answers), new ConsoleOutput());
+        MenuTracker.MenuItemAdd menuAdd = menuTracker.new MenuItemAdd();
 
         assertThat(menuAdd.getMenuName(), is("Add new item"));
     }

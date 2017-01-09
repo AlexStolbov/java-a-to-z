@@ -2,6 +2,7 @@ package ru.astolbov.Start.Menu;
 
 import org.junit.Test;
 import ru.astolbov.Models.Item;
+import ru.astolbov.Start.Input.ConsoleOutput;
 import ru.astolbov.Start.Input.StubInput;
 import ru.astolbov.Start.Tracker;
 
@@ -26,8 +27,9 @@ public class MenuItemDeleteTest {
         String[] answers = new String[1];
         answers[0] = tracker.getItems()[0].getId();
 
-        MenuItemDelete menuItemDelete = new MenuItemDelete();
-        ArrayList<String> result = menuItemDelete.doCommandMenu(tracker, new StubInput(answers));
+        MenuTracker menuTracker = new MenuTracker(tracker, new StubInput(answers), new ConsoleOutput());
+        MenuTracker.MenuItemDelete menuItemDelete = menuTracker.new MenuItemDelete();
+        ArrayList<String> result = menuItemDelete.doCommandMenu();
 
         assertThat(result.get(0), is("items deleted"));
     }
@@ -42,8 +44,9 @@ public class MenuItemDeleteTest {
         String[] answers = new String[1];
         answers[0] = "-1";
 
-        MenuItemDelete menuItemDelete = new MenuItemDelete();
-        ArrayList<String> result = menuItemDelete.doCommandMenu(tracker, new StubInput(answers));
+        MenuTracker menuTracker = new MenuTracker(tracker, new StubInput(answers), new ConsoleOutput());
+        MenuTracker.MenuItemDelete menuItemDelete = menuTracker.new MenuItemDelete();
+        ArrayList<String> result = menuItemDelete.doCommandMenu();
 
         assertThat(result.get(0), is("Item not found"));
     }

@@ -13,16 +13,6 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
 
     /**
-     * Test constructor StartUI.
-     */
-    @Test
-    public void whenCreateThenHaveMenu() {
-        String[] answers = new String[1];
-        StartUI startui = new StartUI(new StubInput(answers));
-        assertThat(startui.getMenu().length > 0, is(true));
-    }
-
-    /**
      * Test StartUI to create with default input.
      */
     @Test
