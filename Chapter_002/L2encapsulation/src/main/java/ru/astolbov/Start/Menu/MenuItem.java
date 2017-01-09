@@ -1,8 +1,5 @@
 package ru.astolbov.Start.Menu;
 
-import ru.astolbov.Start.Input.Input;
-import ru.astolbov.Start.Tracker;
-
 import java.util.ArrayList;
 
 /**

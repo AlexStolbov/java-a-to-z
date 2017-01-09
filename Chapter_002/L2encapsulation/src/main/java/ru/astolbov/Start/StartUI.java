@@ -5,8 +5,6 @@ import ru.astolbov.Start.Input.Input;
 import ru.astolbov.Start.Input.ConsoleOutput;
 import ru.astolbov.Start.Menu.MenuTracker;
 
-import java.util.ArrayList;
-
 /**
  * Created by alex on 12/13/16.
  */
@@ -20,7 +18,7 @@ public class StartUI {
     /**
      * Main menu.
      */
-    MenuTracker menuTracker;
+    private MenuTracker menuTracker;
 
     /**
      Input source.

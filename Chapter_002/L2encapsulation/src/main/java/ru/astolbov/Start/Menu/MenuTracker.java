@@ -11,16 +11,33 @@ import java.util.ArrayList;
  * Created by alex on 1/9/17.
  */
 public class MenuTracker {
-
+    /**
+     * Main menu.
+    */
     private MenuItem[] menu;
 
+    /**
+     * Tracker.
+     */
     private Tracker tracker;
 
+    /**
+     * Input method.
+     */
     private Input input;
 
+    /**
+     * Output.
+     */
     private ConsoleOutput consoleOutput;
 
-    public MenuTracker(Tracker tracker, Input input, ConsoleOutput consoleOutput) {
+    /**
+     * Constructor.
+     * @param trackerSet - tracker.
+     * @param inputSet - input.
+     * @param consoleOutputSet - output.
+     */
+    public MenuTracker(Tracker trackerSet, Input inputSet, ConsoleOutput consoleOutputSet) {
         this.menu = new MenuItem[7];
         this.menu[0] = new MenuItemAdd();
         this.menu[1] = new MenuItemEdit();
@@ -30,9 +47,9 @@ public class MenuTracker {
         this.menu[5] = new MenuItemAddComment();
         this.menu[6] = new MenuItemExit();
 
-        this.tracker = tracker;
-        this.input = input;
-        this.consoleOutput = consoleOutput;
+        this.tracker = trackerSet;
+        this.input = inputSet;
+        this.consoleOutput = consoleOutputSet;
     }
 
     /**
