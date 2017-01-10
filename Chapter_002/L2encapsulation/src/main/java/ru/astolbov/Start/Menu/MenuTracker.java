@@ -83,7 +83,6 @@ public class MenuTracker {
      * Created by alex on 12/20/16.
      */
     class MenuItemAdd implements MenuItem {
-
         /**
          * Define name of menu.
          * @return - name of menu
@@ -91,7 +90,6 @@ public class MenuTracker {
         public String getMenuName() {
             return "Add new item";
         }
-
         /**
          * Add new item in tracker.
          * @return strings - array to show in console
@@ -110,7 +108,6 @@ public class MenuTracker {
             list.add(item.toString().concat(System.lineSeparator()));
             return list;
         }
-
         /**
          * Return the flag of the output from the menu.
          * @return -  false
@@ -149,7 +146,6 @@ public class MenuTracker {
             } else {
                 list.add("Item not found");
             }
-
             return list;
         }
 
@@ -181,7 +177,6 @@ public class MenuTracker {
          * @return strings - array to show
          */
         public ArrayList<String> doCommandMenu() {
-
             ArrayList<String> list = new ArrayList<>();
             String itemsID = input.ask("Please, enter items ID ");
             int posItem = tracker.findById(itemsID);
@@ -191,7 +186,6 @@ public class MenuTracker {
             } else {
                 list.add("Item not found");
             }
-
             return list;
         }
 
@@ -221,7 +215,6 @@ public class MenuTracker {
          * @return strings - array to show
          */
         public ArrayList<String> doCommandMenu() {
-
             ArrayList<String> list = new ArrayList<>();
             String itemsID = input.ask("Please, enter items ID ");
             int posItem = tracker.findById(itemsID);
@@ -233,7 +226,6 @@ public class MenuTracker {
             } else {
                 list.add("Item not found");
             }
-
             return list;
         }
 
@@ -264,10 +256,7 @@ public class MenuTracker {
          * @return strings - array to show
          */
         public ArrayList<String> doCommandMenu() {
-
             ArrayList<String> list = new ArrayList<>();
-            list.add("------- List of items -----------".concat(System.lineSeparator()));
-
             for (Item item:tracker.getItems()) {
                 if (item != null) {
                     list.add(item.toString().concat(System.lineSeparator()));
@@ -276,7 +265,6 @@ public class MenuTracker {
             if (list.size() == 1) {
                 list.add("In the tracker there are no items ".concat(System.lineSeparator()));
             }
-
             return list;
         }
 
@@ -306,13 +294,8 @@ public class MenuTracker {
          * @return strings - array to show
          */
         public ArrayList<String> doCommandMenu() {
-
             ArrayList<String> list = new ArrayList<>();
-
             String filter = input.ask("Please, enter filter ");
-
-            list.add("------- Filtered list of items -----------".concat(System.lineSeparator()));
-
             for (Item item:tracker.getItems()) {
                 if (item != null && item.getName().contains(filter)) {
                     list.add(item.toString().concat(System.lineSeparator()));
@@ -321,7 +304,6 @@ public class MenuTracker {
             if (list.size() == 1) {
                 list.add("No found items ".concat(System.lineSeparator()));
             }
-
             return list;
         }
 
@@ -351,7 +333,6 @@ public class MenuTracker {
          * @return strings - array to show
          */
         public ArrayList<String> doCommandMenu() {
-
             ArrayList<String> list = new ArrayList<>();
             list.add("-------- Goodbye! ---------");
             return list;
