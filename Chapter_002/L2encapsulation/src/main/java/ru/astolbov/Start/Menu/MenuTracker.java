@@ -61,13 +61,10 @@ public class MenuTracker {
         for (int i = 0; i < this.menu.length; i++) {
             System.out.printf("%s. %s %s", Integer.toString(i + 1), this.menu[i].getMenuName(), System.lineSeparator());
         }
-        String numberMenuItem = input.ask("Please, enter number menu item: ");
-        MenuItem selectedMenu;
-        if (numberMenuItem.equals("")) {
-            selectedMenu = null;
-        } else {
-            selectedMenu = menu[Integer.parseInt(numberMenuItem) - 1];
-        }
+
+        int numberMenuItem = input.ask("Please, enter number menu item: ", this.menu.length);
+        MenuItem selectedMenu = menu[--numberMenuItem];
+
         boolean exit;
         if (selectedMenu != null) {
             ArrayList<String> commandResult = selectedMenu.doCommandMenu();

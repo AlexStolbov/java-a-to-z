@@ -1,6 +1,7 @@
 package ru.astolbov.Start;
 
 import ru.astolbov.Start.Input.ConsoleInput;
+import ru.astolbov.Start.Input.ConsoleInputValidate;
 import ru.astolbov.Start.Input.Input;
 import ru.astolbov.Start.Input.ConsoleOutput;
 import ru.astolbov.Start.Menu.MenuTracker;
@@ -40,6 +41,7 @@ public class StartUI {
         } else {
             this.input = inputSet;
         }
+
         menuTracker = new MenuTracker(tracker, input, consoleOutput);
     }
 
@@ -84,7 +86,7 @@ public class StartUI {
      * @param args - line parameters
      */
     public static void main(String[] args) {
-        ConsoleInput inputConsole = new ConsoleInput();
+        ConsoleInput inputConsole = new ConsoleInputValidate();
         StartUI startui = new StartUI(inputConsole);
         int finishCode = startui.begin();
     }

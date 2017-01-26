@@ -36,4 +36,15 @@ public class StubInput implements Input {
         }
         return this.answers[numberForReturn];
     }
+
+    /**
+     * Asks a question to the user and receives the response.
+     * Validate input
+     * @param question - a question to the user
+     * @param maxMenuKey - max of valid value
+     * @return - the input string
+     */
+    public int ask(String question, int maxMenuKey) {
+        return Integer.valueOf(this.ask(question));
+    }
 }
