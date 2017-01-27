@@ -259,7 +259,7 @@ public class MenuTracker {
                     list.add(item.toString().concat(System.lineSeparator()));
                 }
             }
-            if (list.size() == 1) {
+            if (list.size() == 0) {
                 list.add("In the tracker there are no items ".concat(System.lineSeparator()));
             }
             return list;
