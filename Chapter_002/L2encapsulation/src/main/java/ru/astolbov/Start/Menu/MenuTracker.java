@@ -32,6 +32,11 @@ public class MenuTracker {
     private ConsoleOutput consoleOutput;
 
     /**
+     * Position of new menu.
+     */
+    private int newMenuPosition = 0;
+
+    /**
      * Constructor.
      * @param trackerSet - tracker.
      * @param inputSet - input.
@@ -39,17 +44,24 @@ public class MenuTracker {
      */
     public MenuTracker(Tracker trackerSet, Input inputSet, ConsoleOutput consoleOutputSet) {
         this.menu = new MenuItem[7];
-        this.menu[0] = new MenuItemAdd();
-        this.menu[1] = new MenuItemEdit();
-        this.menu[2] = new MenuItemDelete();
-        this.menu[3] = new MenuItemList();
-        this.menu[4] = new MenuItemFilteredList();
-        this.menu[5] = new MenuItemAddComment();
-        this.menu[6] = new MenuItemExit();
+        this.menu[newMenuPosition++] = new MenuItemAdd();
+        this.menu[newMenuPosition++] = new MenuItemEdit();
+        this.menu[newMenuPosition++] = new MenuItemDelete();
+        this.menu[newMenuPosition++] = new MenuItemList();
+        this.menu[newMenuPosition++] = new MenuItemFilteredList();
+        this.menu[newMenuPosition++] = new MenuItemAddComment();
 
         this.tracker = trackerSet;
         this.input = inputSet;
         this.consoleOutput = consoleOutputSet;
+    }
+
+    /**
+     * Add new item.
+     * @param menuItem - new item.
+     */
+    public void addItem(MenuItem menuItem) {
+        this.menu[newMenuPosition++] = menuItem;
     }
 
     /**
@@ -79,14 +91,14 @@ public class MenuTracker {
     /**
      * Created by alex on 12/20/16.
      */
-    class MenuItemAdd implements MenuItem {
+    class MenuItemAdd extends BaseItem {
         /**
-         * Define name of menu.
-         * @return - name of menu
+         * Set name and exit flag of item.
          */
-        public String getMenuName() {
-            return "Add new item";
+        MenuItemAdd() {
+            super("Add new item", false);
         }
+
         /**
          * Add new item in tracker.
          * @return strings - array to show in console
@@ -105,26 +117,18 @@ public class MenuTracker {
             list.add(item.toString().concat(System.lineSeparator()));
             return list;
         }
-        /**
-         * Return the flag of the output from the menu.
-         * @return -  false
-         */
-        public boolean goExit() {
-            return false;
-        }
     }
 
     /**
      * Created by alex on 12/21/16.
      */
-    class MenuItemAddComment implements MenuItem {
+    class MenuItemAddComment extends BaseItem {
+
         /**
-         * Define name of menu.
-         *
-         * @return - name of menu
+         * Set name and exit flag of item.
          */
-        public String getMenuName() {
-            return "Add comment";
+        MenuItemAddComment() {
+            super("Add comment", false);
         }
 
         /**
@@ -145,28 +149,18 @@ public class MenuTracker {
             }
             return list;
         }
-
-        /**
-         * Return the flag of the output from the menu.
-         *
-         * @return -  false
-         */
-        public boolean goExit() {
-            return false;
-        }
     }
 
     /**
      * Created by alex on 12/21/16.
      */
-    class MenuItemDelete implements MenuItem {
+    class MenuItemDelete extends BaseItem {
 
         /**
-         * Define name of menu.
-         * @return - name of menu
+         * Set name and exit flag of item.
          */
-        public String getMenuName() {
-            return "Delete item";
+        MenuItemDelete() {
+            super("Delete item", false);
         }
 
         /**
@@ -185,26 +179,17 @@ public class MenuTracker {
             }
             return list;
         }
-
-        /**
-         * Return the flag of the output from the menu.
-         * @return -  false
-         */
-        public boolean goExit() {
-            return false;
-        }
     }
 
     /**
      * Created by alex on 12/20/16.
      */
-    class MenuItemEdit implements MenuItem {
+    class MenuItemEdit extends BaseItem {
         /**
-         * Define name of menu.
-         * @return - name of menu
+         * Set name and exit flag of item.
          */
-        public String getMenuName() {
-            return "Edit item";
+        MenuItemEdit() {
+            super("Edit item", false);
         }
 
         /**
@@ -225,27 +210,17 @@ public class MenuTracker {
             }
             return list;
         }
-
-        /**
-         * Return the flag of the output from the menu.
-         * @return -  false
-         */
-        public boolean goExit() {
-            return false;
-        }
     }
 
     /**
      * Created by alex on 12/21/16.
      */
-    public class MenuItemList implements MenuItem {
-
+    public class MenuItemList extends BaseItem {
         /**
-         * Define name of menu.
-         * @return - name of menu
+         * Set name and exit flag of item.
          */
-        public String getMenuName() {
-            return "Show items list";
+        MenuItemList() {
+            super("Items list", false);
         }
 
         /**
@@ -260,30 +235,21 @@ public class MenuTracker {
                 }
             }
             if (list.size() == 0) {
-                list.add("In the tracker there are no items ".concat(System.lineSeparator()));
+                list.add("No items in the tracker ".concat(System.lineSeparator()));
             }
             return list;
-        }
-
-        /**
-         * Return the flag of the output from the menu.
-         * @return -  false
-         */
-        public boolean goExit() {
-            return false;
         }
     }
 
     /**
      * Created by alex on 12/21/16.
      */
-    class MenuItemFilteredList implements MenuItem {
+    class MenuItemFilteredList extends BaseItem {
         /**
-         * Define name of menu.
-         * @return - name of menu
+         * Set name and exit flag of item.
          */
-        public String getMenuName() {
-            return "Show items filtered item";
+        MenuItemFilteredList() {
+            super("Show items filtered item", false);
         }
 
         /**
@@ -303,45 +269,5 @@ public class MenuTracker {
             }
             return list;
         }
-
-        /**
-         * Return the flag of the output from the menu.
-         * @return -  false
-         */
-        public boolean goExit() {
-            return false;
-        }
     }
-
-    /**
-     * Created by alex on 12/21/16.
-     */
-    class MenuItemExit implements MenuItem {
-        /**
-         * Define name of menu.
-         * @return - name of menu
-         */
-        public String getMenuName() {
-            return "Exit";
-        }
-
-        /**
-         * Actions that are performed when you select this menu.
-         * @return strings - array to show
-         */
-        public ArrayList<String> doCommandMenu() {
-            ArrayList<String> list = new ArrayList<>();
-            list.add("-------- Goodbye! ---------");
-            return list;
-        }
-
-        /**
-         * Return the flag of the output from the menu.
-         * @return -  true
-         */
-        public boolean goExit() {
-            return true;
-        }
-    }
-
 }

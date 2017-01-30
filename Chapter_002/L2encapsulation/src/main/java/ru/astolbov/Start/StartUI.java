@@ -4,7 +4,11 @@ import ru.astolbov.Start.Input.ConsoleInput;
 import ru.astolbov.Start.Input.ConsoleInputValidate;
 import ru.astolbov.Start.Input.Input;
 import ru.astolbov.Start.Input.ConsoleOutput;
+import ru.astolbov.Start.Menu.BaseItem;
+import ru.astolbov.Start.Menu.MenuItem;
 import ru.astolbov.Start.Menu.MenuTracker;
+
+import java.util.ArrayList;
 
 /**
  * Created by alex on 12/13/16.
@@ -43,6 +47,16 @@ public class StartUI {
         }
 
         menuTracker = new MenuTracker(tracker, input, consoleOutput);
+
+        MenuItem menuExit = new BaseItem("Exit", true) {
+            public ArrayList<String> doCommandMenu() {
+                ArrayList<String> list = new ArrayList<>();
+                list.add("-------- Goodbye! ---------");
+                return list;
+            }
+        };
+
+        menuTracker.addItem(menuExit);
     }
 
     /**
