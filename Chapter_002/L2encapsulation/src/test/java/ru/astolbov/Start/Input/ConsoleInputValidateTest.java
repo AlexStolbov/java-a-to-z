@@ -18,14 +18,17 @@ public class ConsoleInputValidateTest {
     @Test
     public void whenAskInttCharThenReturnInt() {
         String question = "Select menu: ";
-        int menuTestKey = 1;
-        String testString = "a".concat(System.lineSeparator()).concat(String.valueOf(menuTestKey)).concat(System.lineSeparator());
+        int testMenuKey = 1;
+        int invalidMenuKey = 100;
+        String testString = "a".concat(System.lineSeparator());
+        testString = testString.concat(String.valueOf(invalidMenuKey)).concat(System.lineSeparator());
+        testString = testString.concat(String.valueOf(testMenuKey)).concat(System.lineSeparator());
         int maxMenuKey = 3;
         ByteArrayInputStream in = new ByteArrayInputStream(testString.getBytes());
         System.setIn(in);
         ConsoleInputValidate consoleInputValidate = new ConsoleInputValidate();
         int menuKey = consoleInputValidate.ask(question, maxMenuKey);
-        assertThat(menuKey, is(menuTestKey));
+        assertThat(menuKey, is(testMenuKey));
     }
 
 }
