@@ -11,7 +11,7 @@
     </parent>
 
     <build>
-        <finalName>tracker</finalName>
+        <finalName>atm</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

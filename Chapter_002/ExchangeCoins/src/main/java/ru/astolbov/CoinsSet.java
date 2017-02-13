@@ -5,43 +5,55 @@ package ru.astolbov;
  * A set of coins of the same value
  */
 public class CoinsSet {
+
+    enum ValuesBancnotes {
+        oneCent(1), fiveCents(5), tenCents(10), oneDollar(100), tenDollars(1000),
+        fiftyDollars(5000);
+
+        private int weight;
+        ValuesBancnotes(int w) {
+            this.weight = w;
+        }
+
+        public int getWeight() {
+            return this.weight;
+        }
+    }
+
     /**
      * The coin value in the set.
      */
-    private final int valueCoin;
+    private final ValuesBancnotes valueCoin;
 
     /**
      * The number of coins in the set.
      */
     private int numberCoinInSet;
 
-    public CoinsSet(int valueCoin, int numberCoinInSet) {
-        this.valueCoin = valueCoin;
-        this.numberCoinInSet = numberCoinInSet;
+    /**
+     * Constructor.
+     * @param setValueCoin - coin.
+     * @param setNumberCoinInSet - number coins in the set.
+     */
+    public CoinsSet(ValuesBancnotes setValueCoin, int setNumberCoinInSet) {
+        this.valueCoin = setValueCoin;
+        this.numberCoinInSet = setNumberCoinInSet;
     }
 
     /**
      * Getter valueCoin.
      * @return - The coin value in the set.
      */
-    public int getValueCoin() {
+    public ValuesBancnotes getValueCoin() {
         return valueCoin;
     }
 
     /**
-     *Getter numberCoinInSet
+     *Getter numberCoinInSet.
      * @return - The number of coins in the set
      */
     public int getNumberCoinInSet() {
         return numberCoinInSet;
-    }
-
-    /**
-     * Setter numberCoinInSet
-     * @param newNumber - number of coins in the set
-     */
-    public void setNumberCoinInSet(int newNumber) {
-        this.numberCoinInSet = newNumber;
     }
 
     /**
@@ -53,27 +65,26 @@ public class CoinsSet {
     }
 
     /**
-     * The total amount set
+     * The total amount set.
      * @return - total summ
      */
     public int totalAmountSet() {
-        return numberCoinInSet * valueCoin;
+        return numberCoinInSet * valueCoin.weight;
     }
 
     /**
-     * Calculates the number of coins in total.
+     * Calculates the number of coins in total,
+     * and return available number of coins.
      * @param totalSum - total.
      * @return - number of coins.
      */
-    public int numberCoinsInSumm(int totalSum) {
-        return totalSum / valueCoin;
+    public int numberCoinsInSum(int totalSum) {
+        int fits = totalSum / valueCoin.weight;
+        return fits <= this.numberCoinInSet ? fits : this.numberCoinInSet;
     }
 
     @Override
     public String toString() {
-        return "CoinsSet{" +
-                "valueCoin=" + valueCoin +
-                ", numberCoinInSet=" + numberCoinInSet +
-                '}';
+        return String.format("Coins set{ Value coin = %d , Number coins = %d }", valueCoin.getWeight(), numberCoinInSet);
     }
 }

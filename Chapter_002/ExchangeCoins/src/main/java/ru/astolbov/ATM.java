@@ -4,11 +4,10 @@ package ru.astolbov;
  * Created by alex on 2/13/17.
  */
 public class ATM {
-    private final int COIN_ONE = 1;
-    private final int COIN_FIVE = 5;
-    private final int COIN_TEN = 10;
-
-    public CoinsSet[] exchangeCoinsSet;
+     /**
+     * A set of coins in ATM for exchange.
+     */
+    private CoinsSet[] exchangeCoinsSet;
 
     /**
      * Sort coins set in ATM.
@@ -18,12 +17,11 @@ public class ATM {
         boolean nextStep;
         CoinsSet change;
         int lengthArray = values.length;
-
         if (lengthArray > 0) {
             do {
                 nextStep = false;
                 for (int i = 0; i < (lengthArray - 1); i++) {
-                    if (values[i].getValueCoin() > values[i + 1].getValueCoin()) {
+                    if (values[i].getValueCoin().getWeight() > values[i + 1].getValueCoin().getWeight()) {
                         change = values[i];
                         values[i] = values[i + 1];
                         values[i + 1] = change;
@@ -38,13 +36,9 @@ public class ATM {
      * Constructor.
      * Fills the ATM with coins.
      */
-    public ATM() {
-        exchangeCoinsSet = new CoinsSet[3];
-        exchangeCoinsSet[0] = new CoinsSet(COIN_TEN, 100);
-        exchangeCoinsSet[1] = new CoinsSet(COIN_FIVE, 100);
-        exchangeCoinsSet[2] = new CoinsSet(COIN_ONE, 100);
-
-        sort(exchangeCoinsSet);
+    public ATM(CoinsSet[] exchangeCoins) {
+        this.exchangeCoinsSet = exchangeCoins.clone();
+        sort(this.exchangeCoinsSet);
     }
 
     /**
@@ -52,9 +46,9 @@ public class ATM {
      * @param banknotes - banknotes for exchange
      * @return - coins
      */
-    public CoinsSet[] ExchangeBanknotesToCoins(CoinsSet[] banknotes) {
+    public CoinsSet[] exchangeBanknotesToCoins(CoinsSet[] banknotes) {
         int totalSumBanknotes = 0;
-        CoinsSet[] resultExchange = new CoinsSet[exchangeCoinsSet.length];
+        CoinsSet[] resultExchange = new CoinsSet[this.exchangeCoinsSet.length];
 
         for (CoinsSet coin : banknotes) {
             if (coin != null) {
@@ -63,14 +57,27 @@ public class ATM {
         }
 
         if (totalSumBanknotes > 0) {
-            for (int i = (exchangeCoinsSet.length - 1); i >= 0; i--) {
-                int fits = exchangeCoinsSet[i].numberCoinsInSumm(totalSumBanknotes);
+            int totalSumCoins = 0;
+            int restSumBanknotes = totalSumBanknotes;
+            int addSum = 0;
+            for (int i = (this.exchangeCoinsSet.length - 1); i >= 0; i--) {
+                int fits = this.exchangeCoinsSet[i].numberCoinsInSum(restSumBanknotes);
                 if (fits > 0) {
-                    resultExchange[i] = new CoinsSet(exchangeCoinsSet[i].getValueCoin(), fits);
-                    exchangeCoinsSet[i].reduceNumberCoinInSet(fits);
-                    totalSumBanknotes -= resultExchange[i].totalAmountSet();
+                    resultExchange[i] = new CoinsSet(this.exchangeCoinsSet[i].getValueCoin(), fits);
+                    addSum = resultExchange[i].totalAmountSet();
+                    restSumBanknotes -= addSum;
+                    totalSumCoins += addSum;
                 }
             }
+            if (totalSumCoins > totalSumBanknotes) {
+                for (CoinsSet coins:resultExchange) {
+                    this.exchangeCoinsSet[i].reduceNumberCoinInSet(fits);
+                }
+            } else {
+                resultExchange = banknotes;
+            }
+        } else {
+            resultExchange = banknotes;
         }
 
         return resultExchange;
