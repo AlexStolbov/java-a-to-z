@@ -13,5 +13,6 @@
     <modules>
         <module>L1Inheritance</module>
 		<module>L2encapsulation</module>
+		<module>ExchangeCoins</module>
     </modules>
 </project>
