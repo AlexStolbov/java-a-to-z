@@ -1,5 +1,8 @@
 package ru.astolbov;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+
 /**
  * Created by alex on 2/13/17.
  */
@@ -7,38 +10,25 @@ public class ATM {
      /**
      * A set of coins in ATM for exchange.
      */
-    private CoinsSet[] exchangeCoinsSet;
-
-    /**
-     * Sort coins set in ATM.
-     * @param values an array which is sorted
-     */
-    private void sort(CoinsSet[] values) {
-        boolean nextStep;
-        CoinsSet change;
-        int lengthArray = values.length;
-        if (lengthArray > 0) {
-            do {
-                nextStep = false;
-                for (int i = 0; i < (lengthArray - 1); i++) {
-                    if (values[i].getValueCoin().getWeight() > values[i + 1].getValueCoin().getWeight()) {
-                        change = values[i];
-                        values[i] = values[i + 1];
-                        values[i + 1] = change;
-                        nextStep = true;
-                    }
-                }
-            } while (nextStep);
-        }
-    }
+    private ArrayList<CoinsSet> exchangeCoinsSet = new ArrayList<>();
 
     /**
      * Constructor.
      * Fills the ATM with coins.
+     * @param exchangeCoins - coins set
      */
     public ATM(CoinsSet[] exchangeCoins) {
-        this.exchangeCoinsSet = exchangeCoins.clone();
-        sort(this.exchangeCoinsSet);
+        for (CoinsSet coinsSet:exchangeCoins) {
+            if (coinsSet != null) {
+                this.exchangeCoinsSet.add(coinsSet);
+            }
+        }
+        this.exchangeCoinsSet.sort(new Comparator<CoinsSet>() {
+            @Override
+            public int compare(CoinsSet o1, CoinsSet o2) {
+                return - new Integer(o1.getValueCoin().getWeight()).compareTo(new Integer(o2.getValueCoin().getWeight()));
+            }
+        });
     }
 
     /**
@@ -55,23 +45,23 @@ public class ATM {
             }
         }
 
-        CoinsSet[] resultExchange = new CoinsSet[this.exchangeCoinsSet.length];
+        CoinsSet[] resultExchange = new CoinsSet[this.exchangeCoinsSet.size()];
         if (totalSumBanknotes > 0) {
-            int[] reduce = new int[this.exchangeCoinsSet.length];
-            for (int i = (this.exchangeCoinsSet.length - 1); i >= 0; i--) {
-                int fits = this.exchangeCoinsSet[i].numberCoinsInSum(totalSumBanknotes);
+            int[] reduce = new int[this.exchangeCoinsSet.size()];
+            for (int i = 0; i < this.exchangeCoinsSet.size(); i++) {
+                int fits = this.exchangeCoinsSet.get(i).numberCoinsInSum(totalSumBanknotes);
                 if (fits > 0) {
-                    resultExchange[i] = new CoinsSet(this.exchangeCoinsSet[i].getValueCoin(), fits);
+                    resultExchange[i] = new CoinsSet(this.exchangeCoinsSet.get(i).getValueCoin(), fits);
                     totalSumBanknotes -= resultExchange[i].totalAmountSet();
                     reduce[i] = fits;
                 }
-                if (totalSumBanknotes == 0 ) {
+                if (totalSumBanknotes == 0) {
                     break;
                 }
             }
             if (totalSumBanknotes == 0) {
                 for (int i = 0; i < reduce.length; i++) {
-                    this.exchangeCoinsSet[i].reduceNumberCoinInSet(reduce[i]);
+                    this.exchangeCoinsSet.get(i).reduceNumberCoinInSet(reduce[i]);
                 }
                 System.out.println("Take the coins.");
             } else {

@@ -6,17 +6,42 @@ package ru.astolbov;
  */
 public class CoinsSet {
 
+    /**
+     * The types of banknotes.
+     */
     enum ValuesBanknotes {
-        oneCent(1, "1c"), fiveCents(5, "5c"), tenCents(10, "10c"), oneDollar(100, "1$"), tenDollars(1000, "10$"),
-        fiftyDollars(5000, "50$");
+        /**
+         * Types cents.
+         */
+        oneCent(1, "1c"), fiveCents(5, "5c"), tenCents(10, "10c"),
+        /**
+         * Types dollars.
+         */
+        oneDollar(100, "1$"), tenDollars(1000, "10$"), fiftyDollars(5000, "50$");
 
+        /**
+         * Weight banknotes in cents.
+         */
         private int weight;
+        /**
+         * Representation of banknotes.
+         */
         private String view;
+
+        /**
+         * Set weight ant view of banknotes.
+         * @param w - number cents in banknotes
+         * @param s - view
+         */
         ValuesBanknotes(int w, String s) {
             this.weight = w;
             this.view = s;
         }
 
+        /**
+         * Getter weight.
+         * @return - weight
+         */
         public int getWeight() {
             return this.weight;
         }
@@ -64,7 +89,7 @@ public class CoinsSet {
     }
 
     /**
-     * Reduces the number of coins.
+     * Reduces the number of coins in the set.
      * @param reduceNumber - value of reduce.
      */
     public void reduceNumberCoinInSet(int reduceNumber) {
@@ -87,12 +112,34 @@ public class CoinsSet {
      */
     public int numberCoinsInSum(int totalSum) {
         int fits = totalSum / valueCoin.weight;
-        return fits <= this.numberCoinInSet ? fits : this.numberCoinInSet;
+        int res = fits;
+        if (fits > this.numberCoinInSet) {
+            res = this.numberCoinInSet;
+        }
+        return  res;
     }
 
     @Override
     public String toString() {
         //return String.format("Coins set{ Value coin = %d , Number coins = %d }", valueCoin.getWeight(), numberCoinInSet);
         return String.format("%s x %d", valueCoin, numberCoinInSet);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CoinsSet coinsSet = (CoinsSet) o;
+
+        if (numberCoinInSet != coinsSet.numberCoinInSet) return false;
+        return valueCoin == coinsSet.valueCoin;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = valueCoin != null ? valueCoin.hashCode() : 0;
+        result = 31 * result + numberCoinInSet;
+        return result;
     }
 }

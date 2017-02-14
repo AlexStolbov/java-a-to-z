@@ -23,7 +23,7 @@ public class ATMMAster {
         CoinsSet[] exchangeCoins = new CoinsSet[3];
         exchangeCoins[0] = new CoinsSet(CoinsSet.ValuesBanknotes.oneCent, 1000);
         exchangeCoins[1] = new CoinsSet(CoinsSet.ValuesBanknotes.fiveCents, 200);
-        exchangeCoins[2] = new CoinsSet(CoinsSet.ValuesBanknotes.tenCents, 100);
+        exchangeCoins[2] = new CoinsSet(CoinsSet.ValuesBanknotes.tenCents, 1000);
         this.atm = new ATM(exchangeCoins);
 
         this.banknotes = new CoinsSet[3];
