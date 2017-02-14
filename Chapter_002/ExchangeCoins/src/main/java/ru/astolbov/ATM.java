@@ -47,36 +47,39 @@ public class ATM {
      * @return - coins
      */
     public CoinsSet[] exchangeBanknotesToCoins(CoinsSet[] banknotes) {
-        int totalSumBanknotes = 0;
-        CoinsSet[] resultExchange = new CoinsSet[this.exchangeCoinsSet.length];
 
+        int totalSumBanknotes = 0;
         for (CoinsSet coin : banknotes) {
             if (coin != null) {
                 totalSumBanknotes += coin.totalAmountSet();
             }
         }
 
+        CoinsSet[] resultExchange = new CoinsSet[this.exchangeCoinsSet.length];
         if (totalSumBanknotes > 0) {
-            int totalSumCoins = 0;
-            int restSumBanknotes = totalSumBanknotes;
-            int addSum = 0;
+            int[] reduce = new int[this.exchangeCoinsSet.length];
             for (int i = (this.exchangeCoinsSet.length - 1); i >= 0; i--) {
-                int fits = this.exchangeCoinsSet[i].numberCoinsInSum(restSumBanknotes);
+                int fits = this.exchangeCoinsSet[i].numberCoinsInSum(totalSumBanknotes);
                 if (fits > 0) {
                     resultExchange[i] = new CoinsSet(this.exchangeCoinsSet[i].getValueCoin(), fits);
-                    addSum = resultExchange[i].totalAmountSet();
-                    restSumBanknotes -= addSum;
-                    totalSumCoins += addSum;
+                    totalSumBanknotes -= resultExchange[i].totalAmountSet();
+                    reduce[i] = fits;
+                }
+                if (totalSumBanknotes == 0 ) {
+                    break;
                 }
             }
-            if (totalSumCoins > totalSumBanknotes) {
-                for (CoinsSet coins:resultExchange) {
-                    this.exchangeCoinsSet[i].reduceNumberCoinInSet(fits);
+            if (totalSumBanknotes == 0) {
+                for (int i = 0; i < reduce.length; i++) {
+                    this.exchangeCoinsSet[i].reduceNumberCoinInSet(reduce[i]);
                 }
+                System.out.println("Take the coins.");
             } else {
                 resultExchange = banknotes;
+                System.out.println("Sorry, not enough coins for change.");
             }
         } else {
+            System.out.println("Please insert bills into the ATM.");
             resultExchange = banknotes;
         }
 

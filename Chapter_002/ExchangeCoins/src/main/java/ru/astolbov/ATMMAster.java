@@ -21,15 +21,15 @@ public class ATMMAster {
     public ATMMAster() {
 
         CoinsSet[] exchangeCoins = new CoinsSet[3];
-        exchangeCoins[0] = new CoinsSet(CoinsSet.ValuesBancnotes.oneCent, 100);
-        exchangeCoins[1] = new CoinsSet(CoinsSet.ValuesBancnotes.fiveCents, 100);
-        exchangeCoins[2] = new CoinsSet(CoinsSet.ValuesBancnotes.tenCents, 100);
+        exchangeCoins[0] = new CoinsSet(CoinsSet.ValuesBanknotes.oneCent, 1000);
+        exchangeCoins[1] = new CoinsSet(CoinsSet.ValuesBanknotes.fiveCents, 200);
+        exchangeCoins[2] = new CoinsSet(CoinsSet.ValuesBanknotes.tenCents, 100);
         this.atm = new ATM(exchangeCoins);
 
         this.banknotes = new CoinsSet[3];
-        this.banknotes[0] = new CoinsSet(CoinsSet.ValuesBancnotes.fiftyDollars, 1);
-        this.banknotes[1] = new CoinsSet(CoinsSet.ValuesBancnotes.tenDollars, 2);
-        this.banknotes[2] = new CoinsSet(CoinsSet.ValuesBancnotes.oneDollar, 4);
+        this.banknotes[0] = new CoinsSet(CoinsSet.ValuesBanknotes.fiftyDollars, 1);
+        this.banknotes[1] = new CoinsSet(CoinsSet.ValuesBanknotes.tenDollars, 2);
+        this.banknotes[2] = new CoinsSet(CoinsSet.ValuesBanknotes.oneDollar, 8);
     }
 
     /**

@@ -6,24 +6,31 @@ package ru.astolbov;
  */
 public class CoinsSet {
 
-    enum ValuesBancnotes {
-        oneCent(1), fiveCents(5), tenCents(10), oneDollar(100), tenDollars(1000),
-        fiftyDollars(5000);
+    enum ValuesBanknotes {
+        oneCent(1, "1c"), fiveCents(5, "5c"), tenCents(10, "10c"), oneDollar(100, "1$"), tenDollars(1000, "10$"),
+        fiftyDollars(5000, "50$");
 
         private int weight;
-        ValuesBancnotes(int w) {
+        private String view;
+        ValuesBanknotes(int w, String s) {
             this.weight = w;
+            this.view = s;
         }
 
         public int getWeight() {
             return this.weight;
+        }
+
+        @Override
+        public String toString() {
+            return this.view;
         }
     }
 
     /**
      * The coin value in the set.
      */
-    private final ValuesBancnotes valueCoin;
+    private final ValuesBanknotes valueCoin;
 
     /**
      * The number of coins in the set.
@@ -35,7 +42,7 @@ public class CoinsSet {
      * @param setValueCoin - coin.
      * @param setNumberCoinInSet - number coins in the set.
      */
-    public CoinsSet(ValuesBancnotes setValueCoin, int setNumberCoinInSet) {
+    public CoinsSet(ValuesBanknotes setValueCoin, int setNumberCoinInSet) {
         this.valueCoin = setValueCoin;
         this.numberCoinInSet = setNumberCoinInSet;
     }
@@ -44,7 +51,7 @@ public class CoinsSet {
      * Getter valueCoin.
      * @return - The coin value in the set.
      */
-    public ValuesBancnotes getValueCoin() {
+    public ValuesBanknotes getValueCoin() {
         return valueCoin;
     }
 
@@ -85,6 +92,7 @@ public class CoinsSet {
 
     @Override
     public String toString() {
-        return String.format("Coins set{ Value coin = %d , Number coins = %d }", valueCoin.getWeight(), numberCoinInSet);
+        //return String.format("Coins set{ Value coin = %d , Number coins = %d }", valueCoin.getWeight(), numberCoinInSet);
+        return String.format("%s x %d", valueCoin, numberCoinInSet);
     }
 }

@@ -14,7 +14,7 @@ public class CoinsSetTest {
      */
     @Test
     public void whenCoinsSetThenGettersWork() {
-        CoinsSet.ValuesBancnotes value = CoinsSet.ValuesBancnotes.fiftyDollars;
+        CoinsSet.ValuesBanknotes value = CoinsSet.ValuesBanknotes.fiftyDollars;
         int number = 10;
         CoinsSet coinsSet = new CoinsSet(value, number);
         assertThat(coinsSet.getValueCoin(), is(value));
@@ -27,7 +27,7 @@ public class CoinsSetTest {
      */
     @Test
     public  void whenSendSumThenReturnNumberCoins() {
-        CoinsSet.ValuesBancnotes value = CoinsSet.ValuesBancnotes.fiveCents;
+        CoinsSet.ValuesBanknotes value = CoinsSet.ValuesBanknotes.fiveCents;
         int number = 30;
         int sum = 125;
         CoinsSet coinsSet = new CoinsSet(value, number);
