@@ -2,6 +2,8 @@ package ru.astolbov;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,15 +18,15 @@ public class ATMTest {
      */
     @Test
     public void exchangeBanknotesToCoins() throws Exception {
-        CoinsSet[] exchangeCoins = new CoinsSet[2];
+        ArrayList<CoinsSet> exchangeCoins = new ArrayList<>();
         CoinsSet hundredCents = new CoinsSet(CoinsSet.ValuesBanknotes.oneCent, 100);
-        exchangeCoins[0] = hundredCents;
+        exchangeCoins.add(hundredCents);
         ATM atm = new ATM(exchangeCoins);
 
-        CoinsSet[] banknotes = new CoinsSet[2];
-        banknotes[0] = new CoinsSet(CoinsSet.ValuesBanknotes.oneDollar, 1);
+        ArrayList<CoinsSet> banknotes = new ArrayList<>();
+        banknotes.add(new CoinsSet(CoinsSet.ValuesBanknotes.oneDollar, 1));
 
-        CoinsSet[] res = atm.exchangeBanknotesToCoins(banknotes);
+        ArrayList<CoinsSet>res = atm.exchangeBanknotesToCoins(banknotes);
         assertThat(res, is(hundredCents));
 
     }

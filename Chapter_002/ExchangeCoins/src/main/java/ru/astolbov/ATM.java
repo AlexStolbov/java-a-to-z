@@ -17,13 +17,71 @@ public class ATM {
      * Fills the ATM with coins.
      * @param exchangeCoins - coins set
      */
-    public ATM(CoinsSet[] exchangeCoins) {
+    public ATM(ArrayList<CoinsSet> exchangeCoins) {
         for (CoinsSet coinsSet:exchangeCoins) {
             if (coinsSet != null) {
                 this.exchangeCoinsSet.add(coinsSet);
             }
         }
-        this.exchangeCoinsSet.sort(new Comparator<CoinsSet>() {
+     }
+
+    public int totalOfArrayCoinsSet(ArrayList<CoinsSet> coinsSets) {
+        int totalSumBanknotes = 0;
+        for (CoinsSet coin : coinsSets) {
+            if (coin != null) {
+                totalSumBanknotes += coin.totalAmountSet();
+            }
+        }
+        return  totalSumBanknotes;
+    }
+
+    /**
+     * Exchange banknotes for coins.
+     * @param banknotes - banknotes for exchange
+     * @return - coins
+     */
+    public ArrayList<CoinsSet> exchangeBanknotesToCoins(ArrayList<CoinsSet> banknotes) {
+
+        int totalSumBanknotes = totalOfArrayCoinsSet(banknotes);
+        ArrayList<CoinsSet> resultExchange;
+
+        if (totalSumBanknotes > 0) {
+            if (totalOfArrayCoinsSet(this.exchangeCoinsSet) >= totalSumBanknotes) {
+                resultExchange = pickUpExchangeCoins(banknotes);
+                if (totalSumBanknotes != totalOfArrayCoinsSet(resultExchange)) {
+                    System.out.println("Sorry, ATM error. Call service.");
+                    resultExchange = banknotes;
+                }
+            } else {
+                System.out.println("Sorry, not enough coins for change.");
+                resultExchange = banknotes;
+            }
+        } else {
+            System.out.println("Please insert bills into the ATM.");
+            resultExchange = banknotes;
+        }
+        return resultExchange;
+    }
+
+    /**
+     * Sort by total sum of set of cents
+     * @param arrayCoinsSet - array
+     */
+    private void sortArrayCoinsSetBySum(ArrayList<CoinsSet> arrayCoinsSet) {
+        arrayCoinsSet.sort(new Comparator<CoinsSet>() {
+            @Override
+            public int compare(CoinsSet o1, CoinsSet o2) {
+                return - new Integer(o1.totalAmountSet()).compareTo(new Integer(o2.totalAmountSet()));
+            }
+        });
+    }
+
+    /**
+     * Sort by total value of cents in set
+     * @param arrayCoinsSet - array
+     */
+    private void sortArrayCoinsSetByValue(ArrayList<CoinsSet> arrayCoinsSet) {
+        arrayCoinsSet.sort(new Comparator<CoinsSet>() {
             @Override
             public int compare(CoinsSet o1, CoinsSet o2) {
                 return - new Integer(o1.getValueCoin().getWeight()).compareTo(new Integer(o2.getValueCoin().getWeight()));
@@ -32,47 +90,36 @@ public class ATM {
     }
 
     /**
-     * Exchange banknotes for coins.
-     * @param banknotes - banknotes for exchange
-     * @return - coins
+     * Pick up coins to exchange.
+     * @param banknotes - banknotes
+     * @return - coins.
      */
-    public CoinsSet[] exchangeBanknotesToCoins(CoinsSet[] banknotes) {
+    private ArrayList<CoinsSet> pickUpExchangeCoins(ArrayList<CoinsSet> banknotes) {
 
-        int totalSumBanknotes = 0;
-        for (CoinsSet coin : banknotes) {
-            if (coin != null) {
-                totalSumBanknotes += coin.totalAmountSet();
+        sortArrayCoinsSetBySum(exchangeCoinsSet);
+
+        //Array with the % of coins in the total amount in the ATM
+        int totalSumATM = totalOfArrayCoinsSet(this.exchangeCoinsSet);
+        float[] percentInTotal = new float[this.exchangeCoinsSet.size()];
+        for (int i = 0; i < this.exchangeCoinsSet.size(); i++) {
+            percentInTotal[i] = (float) this.exchangeCoinsSet.get(i).totalAmountSet() / totalSumATM;
+        }
+
+        int totalSumBanknotes = totalOfArrayCoinsSet(banknotes);
+        ArrayList<CoinsSet> resultExchange = new ArrayList<>();
+        for (int i = 0; i < this.exchangeCoinsSet.size(); i++) {
+            int sumForExchangeOnThisStep = Math.round(totalSumBanknotes * percentInTotal[i]);
+            if ((i + 1) == this.exchangeCoinsSet.size()) {
+                sumForExchangeOnThisStep = totalSumBanknotes - totalOfArrayCoinsSet(resultExchange);
+            }
+            int fits = this.exchangeCoinsSet.get(i).numberCoinsInSum(sumForExchangeOnThisStep);
+            if (fits > 0) {
+                resultExchange.add(new CoinsSet(this.exchangeCoinsSet.get(i).getValueCoin(), fits));
+                this.exchangeCoinsSet.get(i).reduceNumberCoinInSet(fits);
             }
         }
 
-        CoinsSet[] resultExchange = new CoinsSet[this.exchangeCoinsSet.size()];
-        if (totalSumBanknotes > 0) {
-            int[] reduce = new int[this.exchangeCoinsSet.size()];
-            for (int i = 0; i < this.exchangeCoinsSet.size(); i++) {
-                int fits = this.exchangeCoinsSet.get(i).numberCoinsInSum(totalSumBanknotes);
-                if (fits > 0) {
-                    resultExchange[i] = new CoinsSet(this.exchangeCoinsSet.get(i).getValueCoin(), fits);
-                    totalSumBanknotes -= resultExchange[i].totalAmountSet();
-                    reduce[i] = fits;
-                }
-                if (totalSumBanknotes == 0) {
-                    break;
-                }
-            }
-            if (totalSumBanknotes == 0) {
-                for (int i = 0; i < reduce.length; i++) {
-                    this.exchangeCoinsSet.get(i).reduceNumberCoinInSet(reduce[i]);
-                }
-                System.out.println("Take the coins.");
-            } else {
-                resultExchange = banknotes;
-                System.out.println("Sorry, not enough coins for change.");
-            }
-        } else {
-            System.out.println("Please insert bills into the ATM.");
-            resultExchange = banknotes;
-        }
-
+        sortArrayCoinsSetByValue(resultExchange);
         return resultExchange;
     }
 
