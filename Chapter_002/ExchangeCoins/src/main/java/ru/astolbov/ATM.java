@@ -20,17 +20,21 @@ public class ATM {
     public ATM(ArrayList<CoinsSet> exchangeCoins) {
         for (CoinsSet coinsSet:exchangeCoins) {
             if (coinsSet != null) {
-                this.exchangeCoinsSet.add(coinsSet);
+                this.exchangeCoinsSet.add(new CoinsSet(coinsSet.getValueCoin(), coinsSet.getNumberCoinInSet()));
             }
         }
-     }
+    }
 
+    /**
+     * Calculate total sum in CoinsSet array.
+     * @param coinsSets - array
+     * @return - sum
+     */
     public int totalOfArrayCoinsSet(ArrayList<CoinsSet> coinsSets) {
         int totalSumBanknotes = 0;
+        coinsSets.remove(null);
         for (CoinsSet coin : coinsSets) {
-            if (coin != null) {
-                totalSumBanknotes += coin.totalAmountSet();
-            }
+            totalSumBanknotes += coin.totalAmountSet();
         }
         return  totalSumBanknotes;
     }
@@ -64,27 +68,27 @@ public class ATM {
     }
 
     /**
-     * Sort by total sum of set of cents
+     * Sort by total sum of set of cents.
      * @param arrayCoinsSet - array
      */
     private void sortArrayCoinsSetBySum(ArrayList<CoinsSet> arrayCoinsSet) {
         arrayCoinsSet.sort(new Comparator<CoinsSet>() {
             @Override
             public int compare(CoinsSet o1, CoinsSet o2) {
-                return - new Integer(o1.totalAmountSet()).compareTo(new Integer(o2.totalAmountSet()));
+                return -Integer.compare(o1.totalAmountSet(), o2.totalAmountSet());
             }
         });
     }
 
     /**
-     * Sort by total value of cents in set
+     * Sort by total value of cents in set.
      * @param arrayCoinsSet - array
      */
-    private void sortArrayCoinsSetByValue(ArrayList<CoinsSet> arrayCoinsSet) {
+    private void sortArrayCoinsSetByWeight(ArrayList<CoinsSet> arrayCoinsSet) {
         arrayCoinsSet.sort(new Comparator<CoinsSet>() {
             @Override
             public int compare(CoinsSet o1, CoinsSet o2) {
-                return - new Integer(o1.getValueCoin().getWeight()).compareTo(new Integer(o2.getValueCoin().getWeight()));
+                return -Integer.compare(o1.getValueCoin().getWeight(), o2.getValueCoin().getWeight());
             }
         });
     }
@@ -119,7 +123,7 @@ public class ATM {
             }
         }
 
-        sortArrayCoinsSetByValue(resultExchange);
+        sortArrayCoinsSetByWeight(resultExchange);
         return resultExchange;
     }
 

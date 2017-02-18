@@ -77,4 +77,66 @@ public class CoinsSetTest {
         CoinsSet coinsSet = new CoinsSet(cent, maxCents);
         assertThat(maxCents, is(coinsSet.numberCoinsInSum(banknotes.getWeight())));
     }
+
+    /**
+     * Test equals different reference in one object.
+     */
+    @Test
+    public void whenSameObjectThenEqualsTrue() {
+        CoinsSet c1 = new CoinsSet(CoinsSet.ValuesBanknotes.fiftyDollars, 1);
+        CoinsSet c2 = c1;
+        assertThat(c1.equals(c2), is(true));
+    }
+
+    /**
+     * Test equals with null.
+     */
+    @Test
+    public void whenNullThenEqualsFalse() {
+        CoinsSet c1 = new CoinsSet(CoinsSet.ValuesBanknotes.fiftyDollars, 1);
+        CoinsSet c2 = null;
+        assertThat(c1.equals(c2), is(false));
+    }
+
+    /**
+     * Test equals with other class.
+     */
+    @Test
+    public void whenOtherClassThenEqualsFalse() {
+        CoinsSet c1 = new CoinsSet(CoinsSet.ValuesBanknotes.fiftyDollars, 1);
+        Integer c2 = new Integer(2);
+        assertThat(c1.equals(c2), is(false));
+    }
+
+    /**
+     * Test equals with different number coin.
+     */
+    @Test
+    public void whenDifferentNumberCoinThenEqualsFalse() {
+        CoinsSet c1 = new CoinsSet(CoinsSet.ValuesBanknotes.fiftyDollars, 1);
+        CoinsSet c2 = new CoinsSet(CoinsSet.ValuesBanknotes.fiftyDollars, 2);
+        assertThat(c1.equals(c2), is(false));
+    }
+
+    /**
+     * Test equals with different value coin.
+     */
+    @Test
+    public void whenDifferentValueCoinThenEqualsFalse() {
+        CoinsSet c1 = new CoinsSet(CoinsSet.ValuesBanknotes.fiftyDollars, 2);
+        CoinsSet c2 = new CoinsSet(CoinsSet.ValuesBanknotes.tenDollars, 2);
+        assertThat(c1.equals(c2), is(false));
+    }
+
+    /**
+     * Test equals with all is equally.
+     */
+    @Test
+    public void whenAllEquallyThenEqualsTrue() {
+        CoinsSet.ValuesBanknotes vb = CoinsSet.ValuesBanknotes.fiftyDollars;
+        int n = 5;
+        CoinsSet c1 = new CoinsSet(vb, n);
+        CoinsSet c2 = new CoinsSet(vb, n);
+        assertThat(c1.equals(c2), is(true));
+    }
 }

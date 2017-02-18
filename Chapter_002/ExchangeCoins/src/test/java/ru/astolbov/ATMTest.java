@@ -13,22 +13,54 @@ import static org.junit.Assert.assertThat;
 public class ATMTest {
 
     /**
-     * Test.
+     * Test exchange 1$ to 100c.
      * @throws Exception - error.
      */
     @Test
-    public void exchangeBanknotesToCoins() throws Exception {
+    public void whenExchangeOneDollarThenReturnHundredCents() throws Exception {
         ArrayList<CoinsSet> exchangeCoins = new ArrayList<>();
-        CoinsSet hundredCents = new CoinsSet(CoinsSet.ValuesBanknotes.oneCent, 100);
-        exchangeCoins.add(hundredCents);
+        exchangeCoins.add(new CoinsSet(CoinsSet.ValuesBanknotes.oneCent, 100));
+        exchangeCoins.add(null);
+        ATM atm = new ATM(exchangeCoins);
+        exchangeCoins.remove(null);
+
+        ArrayList<CoinsSet> banknotes = new ArrayList<>();
+        banknotes.add(new CoinsSet(CoinsSet.ValuesBanknotes.oneDollar, 1));
+
+        ArrayList<CoinsSet> res = atm.exchangeBanknotesToCoins(banknotes);
+        assertThat(res, is(exchangeCoins));
+
+    }
+
+    /**
+     * Test exchange zero sum.
+     */
+    @Test
+    public void whenSumForExchangeIsZeroThenReturnSameBanknotes() {
+        ArrayList<CoinsSet> exchangeCoins = new ArrayList<>();
+        exchangeCoins.add(new CoinsSet(CoinsSet.ValuesBanknotes.oneCent, 1000));
+        ATM atm = new ATM(exchangeCoins);
+
+        ArrayList<CoinsSet> banknotes = new ArrayList<>();
+        banknotes.add(new CoinsSet(CoinsSet.ValuesBanknotes.oneDollar, 0));
+
+        ArrayList<CoinsSet> res = atm.exchangeBanknotesToCoins(banknotes);
+        assertThat(res, is(banknotes));
+    }
+
+    /**
+     * Test when not enough money in ATM.
+     */
+    @Test
+    public void whenNotEnoughMoneyInATMThenReturnSameBanknotes() {
+        ArrayList<CoinsSet> exchangeCoins = new ArrayList<>();
+        exchangeCoins.add(new CoinsSet(CoinsSet.ValuesBanknotes.oneCent, 0));
         ATM atm = new ATM(exchangeCoins);
 
         ArrayList<CoinsSet> banknotes = new ArrayList<>();
         banknotes.add(new CoinsSet(CoinsSet.ValuesBanknotes.oneDollar, 1));
 
-        ArrayList<CoinsSet>res = atm.exchangeBanknotesToCoins(banknotes);
-        assertThat(res, is(hundredCents));
-
+        ArrayList<CoinsSet> res = atm.exchangeBanknotesToCoins(banknotes);
+        assertThat(res, is(banknotes));
     }
-
 }

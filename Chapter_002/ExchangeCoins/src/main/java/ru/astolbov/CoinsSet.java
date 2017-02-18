@@ -121,24 +121,34 @@ public class CoinsSet {
 
     @Override
     public String toString() {
-        //return String.format("Coins set{ Value coin = %d , Number coins = %d }", valueCoin.getWeight(), numberCoinInSet);
         return String.format("%s x %d", valueCoin, numberCoinInSet);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         CoinsSet coinsSet = (CoinsSet) o;
 
-        if (numberCoinInSet != coinsSet.numberCoinInSet) return false;
-        return valueCoin == coinsSet.valueCoin;
+        if (valueCoin != coinsSet.valueCoin) {
+            return false;
+        }
+        return numberCoinInSet == coinsSet.numberCoinInSet;
     }
 
     @Override
     public int hashCode() {
-        int result = valueCoin != null ? valueCoin.hashCode() : 0;
+        int result;
+        if (valueCoin != null) {
+            result = valueCoin.hashCode();
+        } else {
+            result = 0;
+        }
         result = 31 * result + numberCoinInSet;
         return result;
     }
