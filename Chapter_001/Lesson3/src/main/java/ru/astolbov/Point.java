@@ -1,26 +1,27 @@
 package ru.astolbov;
 
-   /**
-	* Class Point.
-	* точка в декартовой системе координат
-	* @author stolbov
-	* @since 08.11.2016
-	*/
+/**
+ * Class Point.
+ * точка в декартовой системе координат
+ * @author stolbov
+ * @since 08.11.2016
+ */
 
 public class Point {
-   /**
-	* Абцисса.
-	*/
-	private double x;
-	/**
-	*Ордината.
-	*/
-	private double y;
+    /**
+     * Абцисса.
+     */
+    //private double x;
+    public double x;
+    /**
+     *Ордината.
+     */
+    private double y;
 
-   /**
-	* Получить абциссу точки.
-	* @return абцисса
-	*/
+    /**
+     * Получить абциссу точки.
+     * @return абцисса
+     */
 	public double getX() {
 		return this.x;
 	}

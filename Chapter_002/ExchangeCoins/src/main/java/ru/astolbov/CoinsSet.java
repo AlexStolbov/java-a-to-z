@@ -89,7 +89,7 @@ public class CoinsSet {
     }
 
     /**
-     * Reduces the number of coins in the set.
+     *  .
      * @param reduceNumber - value of reduce.
      */
     public void reduceNumberCoinInSet(int reduceNumber) {

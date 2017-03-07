@@ -14,5 +14,6 @@
         <module>L1Inheritance</module>
 		<module>L2encapsulation</module>
 		<module>ExchangeCoins</module>
+		<module>Chess</module>
     </modules>
 </project>
